@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 
 import com.doepiccoding.navigationdrawer.R;
 
-public class EarthFragment extends Fragment{
+public class HomeFragment extends Fragment{
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

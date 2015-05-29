@@ -14,12 +14,14 @@ public class VenusFragment extends Fragment{
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.secont, null);
 		//TextView.class.cast(rootView.findViewById(R.id.labelText)).setText("Venus");
-		Uri webPage = Uri.parse("http://cs.annauniv.edu/academic/ug2012/M1.pdf");
-		Intent webIntent = new Intent(Intent.ACTION_VIEW, webPage);
-		startActivity(webIntent);
-		return rootView;
+	//	Uri webPage = Uri.parse("http://cs.annauniv.edu/academic/ug2012/M1.pdf");
+		//Intent webIntent = new Intent(Intent.ACTION_VIEW, webPage);
+		//Intent downloadFileIntent;
+        //downloadFileIntent = new Intent(getActivity(), Downloader.class);
+        //downloadFileIntent.
+       // startActivity(webIntent);
+		return inflater.inflate(R.layout.secont, null);
 	}
 
 	

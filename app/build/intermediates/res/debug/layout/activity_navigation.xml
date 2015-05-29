@@ -8,7 +8,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#ffff1705"
+        android:background="#FFFF5722"
         android:orientation="horizontal"
         android:id="@+id/s1">
 
@@ -30,7 +30,7 @@
             android:textSize="26dp"
             android:textStyle="bold"
             android:typeface="normal"
-            android:background="#ffff1705"
+            android:background="#FFF44336"
 
             android:textIsSelectable="false" />
     </LinearLayout>
@@ -60,4 +60,4 @@
             android:background="#E6E6E6" >
         </ExpandableListView>
     </android.support.v4.widget.DrawerLayout>
-</LinearLayout><!-- From: file:/E:/SYLAB/NavigationDrawer/app/src/main/res/layout/activity_navigation.xml -->
+</LinearLayout><!-- From: file:/home/faizaan/AndroidStudioProjects/SYLAB/app/src/main/res/layout/activity_navigation.xml -->
