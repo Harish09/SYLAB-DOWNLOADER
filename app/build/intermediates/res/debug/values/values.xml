@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/E:/SYLAB/NavigationDrawer/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/home/faizaan/AndroidStudioProjects/SYLAB/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string-array name="itemsName">
         <item>A-Z Movie Songs</item>
@@ -9,17 +9,17 @@
         <item>AR Rahman Songs</item>
         <item>Ilayaraja Songs</item>
     </string-array>
-    <!-- From: file:/E:/SYLAB/NavigationDrawer/app/src/main/res/values/dimens.xml -->
+    <!-- From: file:/home/faizaan/AndroidStudioProjects/SYLAB/app/src/main/res/values/dimens.xml -->
     <eat-comment/>
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-    <!-- From: file:/E:/SYLAB/NavigationDrawer/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/home/faizaan/AndroidStudioProjects/SYLAB/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="action_settings">Settings</string>
     <string name="app_name">NavigationDrawer</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_pet_clinic">PetClinicActivity</string>
-    <!-- From: file:/E:/SYLAB/NavigationDrawer/app/src/main/res/values/styles.xml -->
+    <!-- From: file:/home/faizaan/AndroidStudioProjects/SYLAB/app/src/main/res/values/styles.xml -->
     <eat-comment/>
     <style name="AppBaseTheme" parent="android:Theme.Light">
         <!--

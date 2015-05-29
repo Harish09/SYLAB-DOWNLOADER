@@ -11,7 +11,7 @@ import android.widget.ListView;
 
 import com.doepiccoding.navigationdrawer.R;
 
-public class MercuryFragment extends Fragment{
+public class M1Fragment extends Fragment{
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

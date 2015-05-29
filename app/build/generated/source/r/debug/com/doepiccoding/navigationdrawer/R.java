@@ -24,7 +24,7 @@ public final class R {
         public static final int phome=0x7f020003;
     }
     public static final class id {
-        public static final int action_settings=0x7f090009;
+        public static final int action_settings=0x7f09000a;
         public static final int appname=0x7f090002;
         public static final int content_frame=0x7f090004;
         public static final int drawer_layout=0x7f090003;
@@ -32,8 +32,9 @@ public final class R {
         public static final int lblListHeader=0x7f090006;
         public static final int lblListItem=0x7f090007;
         public static final int lvExp=0x7f090005;
+        public static final int pdfView=0x7f090008;
         public static final int s1=0x7f090000;
-        public static final int s9=0x7f090008;
+        public static final int s9=0x7f090009;
     }
     public static final class layout {
         public static final int activity_navigation=0x7f030000;
