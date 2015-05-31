@@ -2,11 +2,11 @@
 <items version="2" >
 
     <item
-        jar="/home/faizaan/AndroidStudioProjects/SYLAB/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/libs/internal_impl-22.2.0.jar"
+        jar="/home/faizaan/Documents/android-sdk-linux/extras/android/m2repository/com/android/support/support-annotations/22.2.0/support-annotations-22.2.0.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
-        <dex dex="/home/faizaan/AndroidStudioProjects/SYLAB/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.0-8883d6277e211ec966be4de0db09b14afc47c7ad.jar" />
+        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
+        <dex dex="/home/faizaan/AndroidStudioProjects/SYLAB/app/build/intermediates/pre-dexed/debug/support-annotations-22.2.0-c60543a14f9c65c4954f8594b89a8da63e2e8bd9.jar" />
     </item>
     <item
         jar="/home/faizaan/AndroidStudioProjects/SYLAB/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/classes.jar"
@@ -23,11 +23,11 @@
         <dex dex="/home/faizaan/AndroidStudioProjects/SYLAB/app/build/intermediates/pre-dexed/debug/classes-1ac9086c9ab3403d20b37c8857cc4196088b342b.jar" />
     </item>
     <item
-        jar="/home/faizaan/Documents/android-sdk-linux/extras/android/m2repository/com/android/support/support-annotations/22.2.0/support-annotations-22.2.0.jar"
+        jar="/home/faizaan/AndroidStudioProjects/SYLAB/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/libs/internal_impl-22.2.0.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
-        <dex dex="/home/faizaan/AndroidStudioProjects/SYLAB/app/build/intermediates/pre-dexed/debug/support-annotations-22.2.0-c60543a14f9c65c4954f8594b89a8da63e2e8bd9.jar" />
+        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
+        <dex dex="/home/faizaan/AndroidStudioProjects/SYLAB/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.0-8883d6277e211ec966be4de0db09b14afc47c7ad.jar" />
     </item>
 
 </items>

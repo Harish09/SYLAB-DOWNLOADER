@@ -4,12 +4,10 @@
     android:gravity="center"
     android:orientation="vertical" >
 
-    <TextView android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Downloading Sem 2 physics"
-        android:textColor="#000000"/>
 
-
-
+    <com.joanzapata.pdfview.PDFView
+        android:id="@+id/pdfView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </LinearLayout><!-- From: file:/home/faizaan/AndroidStudioProjects/SYLAB/app/src/main/res/layout/s2physicsx.xml -->

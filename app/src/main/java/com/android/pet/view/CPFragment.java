@@ -11,26 +11,25 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
-
 import com.doepiccoding.navigationdrawer.R;
 import com.joanzapata.pdfview.PDFView;
 
 import java.io.File;
 
-public class M1Fragment extends Fragment{
+public class CPFragment extends Fragment{
 
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-		View rootView = inflater.inflate(R.layout.m1, null);
+        View rootView = inflater.inflate(R.layout.s2physicsx, null);
 
-        String url = "http://cs.annauniv.edu/academic/ug2012/M1.pdf";
+
+        String url = "http://cs.annauniv.edu/academic/ug2012/CP.pdf";
 
         PDFView pdfView = (PDFView) rootView.findViewById(R.id.pdfView);
 
         FileDownloader fileDownloader = new FileDownloader();
-        final File file = new File(fileDownloader.getFilePath("/SYLAB/M1.pdf"));
-
+        final File file = new File(fileDownloader.getFilePath("/SYLAB/CP.pdf"));
 
         Button temp = (Button) getActivity().findViewById(R.id.open_btn);
 
@@ -53,11 +52,11 @@ public class M1Fragment extends Fragment{
 
 
         if(fileDownloader.isReadyForDownload(this) && !fileDownloader.isFilePresent(file)) {
-            fileDownloader.DownloadFile(getActivity().getApplicationContext(), url, "/SYLAB/", "M1", ".pdf");
+            fileDownloader.DownloadFile(getActivity().getApplicationContext(), url, "/SYLAB/", "CP", ".pdf");
 
         }
         else {
-            if(fileDownloader.isFilePresent("/SYLAB/M1.pdf")) {
+            if(fileDownloader.isFilePresent("/SYLAB/CP.pdf")) {
                 Toast.makeText(getActivity().getApplicationContext(), "File already downloaded", Toast.LENGTH_SHORT).show();
                 temp.setVisibility(View.VISIBLE);
 
@@ -67,7 +66,7 @@ public class M1Fragment extends Fragment{
 
             if(!fileDownloader.getDeviceConnectedState()) {
                 Toast.makeText(getActivity().getApplicationContext(), "Network error", Toast.LENGTH_SHORT).show();
-                if(fileDownloader.isFilePresent("/SYLAB/M1.pdf")) {
+                if(fileDownloader.isFilePresent("/SYLAB/CP.pdf")) {
                     temp.setVisibility(View.VISIBLE);
                     pdfView.fromFile(file).defaultPage(1).enableSwipe(true).load();
                     return rootView;
@@ -76,6 +75,7 @@ public class M1Fragment extends Fragment{
 
         }
 
+
         return rootView;
-	}
+    }
 }

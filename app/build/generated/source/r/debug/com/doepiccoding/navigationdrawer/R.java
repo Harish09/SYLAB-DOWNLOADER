@@ -24,30 +24,34 @@ public final class R {
         public static final int phome=0x7f020003;
     }
     public static final class id {
-        public static final int action_settings=0x7f09000a;
+        public static final int action_settings=0x7f09000c;
         public static final int appname=0x7f090002;
-        public static final int content_frame=0x7f090004;
-        public static final int drawer_layout=0x7f090003;
+        public static final int content_frame=0x7f090005;
+        public static final int drawer_layout=0x7f090004;
         public static final int home=0x7f090001;
-        public static final int lblListHeader=0x7f090006;
-        public static final int lblListItem=0x7f090007;
-        public static final int lvExp=0x7f090005;
-        public static final int pdfView=0x7f090008;
+        public static final int lblListHeader=0x7f090007;
+        public static final int lblListItem=0x7f090008;
+        public static final int lvExp=0x7f090006;
+        public static final int open_btn=0x7f090003;
+        public static final int open_pdf=0x7f09000b;
+        public static final int pdfView=0x7f090009;
         public static final int s1=0x7f090000;
-        public static final int s9=0x7f090009;
+        public static final int s9=0x7f09000a;
     }
     public static final class layout {
         public static final int activity_navigation=0x7f030000;
-        public static final int first=0x7f030001;
-        public static final int list_group=0x7f030002;
-        public static final int list_item=0x7f030003;
-        public static final int maths2x=0x7f030004;
-        public static final int s2physicsx=0x7f030005;
-        public static final int secont=0x7f030006;
-        public static final int third=0x7f030007;
+        public static final int list_group=0x7f030001;
+        public static final int list_item=0x7f030002;
+        public static final int m1=0x7f030003;
+        public static final int m2=0x7f030004;
+        public static final int pce=0x7f030005;
+        public static final int s2physicsx=0x7f030006;
+        public static final int secont=0x7f030007;
+        public static final int third=0x7f030008;
     }
     public static final class menu {
-        public static final int navigation=0x7f080000;
+        public static final int fragment=0x7f080000;
+        public static final int navigation=0x7f080001;
     }
     public static final class string {
         public static final int action_settings=0x7f060000;

@@ -2,12 +2,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical" >
+
 
     <com.joanzapata.pdfview.PDFView
         android:id="@+id/pdfView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-</LinearLayout><!-- From: file:/home/faizaan/AndroidStudioProjects/SYLAB/app/src/main/res/layout/maths2x.xml -->
+</LinearLayout>

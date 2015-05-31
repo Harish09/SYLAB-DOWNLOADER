@@ -2,6 +2,7 @@ package com.android.pet.view;
 
 import android.app.Activity;
 import android.app.DownloadManager;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -18,54 +19,96 @@ public class FileDownloader {
 
     private ConnectivityManager connectivityManager;
 
+    private boolean deviceConnected = false;
 
-    private Boolean mConnected = false, mFileStatus = false;
+    private boolean fileStatus = false;
 
+    private String fileExtension = ".txt";
 
-    public boolean isReadyForDownload(@Nullable Activity activity, @Nullable Fragment fragment, String pathRelativeToRoot) {
+    private String fileName = "downloaded_file";
 
-        if(fragment != null)
-            connectivityManager = (ConnectivityManager) fragment.getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+    private String dirName = "/file_downloader/";
 
-        if(activity != null)
-            connectivityManager = (ConnectivityManager) activity.getSystemService(Context.CONNECTIVITY_SERVICE);
+    public String getFileExtension() {
+        return fileExtension;
+    }
+
+    public void setFileExtension(String fileExtension) {
+        if(fileExtension != null)
+            this.fileExtension = fileExtension;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        if(fileName != null)
+            this.fileName = fileName;
+    }
+
+    public String getDirName() {
+        return dirName;
+    }
+
+    public void setDirName(String dirName) {
+        if(dirName != null)
+            this.dirName = dirName;
+    }
+
+    public void setDeviceConnected(boolean deviceConnected) {
+        this.deviceConnected = deviceConnected;
+    }
+
+    public void setFileStatus(boolean fileStatus) {
+        this.fileStatus = fileStatus;
+    }
+
+    public boolean getDeviceConnectedState() {
+        return deviceConnected;
+    }
+
+    public boolean getFileStatus() {
+        return fileStatus;
+    }
+
+    public boolean isReadyForDownload(@NonNull Object Parent) {
+
+        if(Parent instanceof Fragment)
+            connectivityManager = (ConnectivityManager) ((Fragment)Parent).getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        //if(fragment != null)
+
+        if(Parent instanceof Activity)
+            connectivityManager = (ConnectivityManager) ((Activity)Parent).getSystemService(Context.CONNECTIVITY_SERVICE);
 
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
 
         if (networkInfo != null && networkInfo.isConnected())
-            mConnected = true;
-       // else
-         //   Toast.makeText(fragment.getActivity().getApplicationContext(), "Network unavailable", Toast.LENGTH_SHORT).show();
+            setDeviceConnected(true);
 
-        if (!isFileAlreadyPresent(pathRelativeToRoot))
-            mFileStatus = true;
-        //else
-          //  Toast.makeText(fragment.getActivity().getApplicationContext(), "File already downloaded", Toast.LENGTH_SHORT).show();
-
-        return mConnected && mFileStatus;
+        return getDeviceConnectedState();
     }
 
-    public Boolean getmConnected() {
-        return mConnected;
-    }
 
-    public Boolean getmFileStatus() {
-        return mFileStatus;
-    }
-
-    public boolean isFileAlreadyPresent(String pathRelativeToRoot) {
-
+    public boolean isFilePresent(String pathRelativeToRoot) {
         String totalPath = Environment.getExternalStorageDirectory().toString() + pathRelativeToRoot;
-        File checkFile = new File(totalPath);
+        return new File(totalPath).exists();
 
-        return checkFile.exists();
+    }
+
+    public boolean isFilePresent(File file) {
+        return file.exists();
     }
 
     public String getFilePath(String pathRelativeToRoot) {
         return Environment.getExternalStorageDirectory().toString() + pathRelativeToRoot;
     }
 
-    public void DownloadSyllabus(Context context, String url, String fileName) {
+    public void DownloadFile(@NonNull Context context, @NonNull String url, @Nullable String dirName, @Nullable String fileName, @Nullable String fileExtension) {
+
+        this.setDirName(dirName);
+        this.setFileName(fileName);
+        this.setFileExtension(fileExtension);
 
         DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
         request.setDescription("Required component of the application");
@@ -76,12 +119,12 @@ public class FileDownloader {
             request.allowScanningByMediaScanner();
             request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
         }
-        request.setDestinationInExternalPublicDir("/SYLAB", fileName + ".pdf");
+        request.setDestinationInExternalPublicDir(getDirName(), getFileName() + getFileExtension());
 
         // get download service and enqueue file
         DownloadManager manager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
         manager.enqueue(request);
 
-        Toast.makeText(context, "File downloaded at " + Environment.getExternalStorageDirectory() + "/SYLAB", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "File downloaded at " + Environment.getExternalStorageDirectory() + getDirName(), Toast.LENGTH_SHORT).show();
     }
 }

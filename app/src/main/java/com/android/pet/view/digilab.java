@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 
 import com.doepiccoding.navigationdrawer.R;
 
@@ -15,7 +14,7 @@ public class digilab extends Fragment{
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.first, null);
+        View rootView = inflater.inflate(R.layout.m1, null);
         Uri webPage = Uri.parse("http://cs.annauniv.edu/academic/ug2012/M1.pdf");
         Intent webIntent = new Intent(Intent.ACTION_VIEW, webPage);
         startActivity(webIntent);
