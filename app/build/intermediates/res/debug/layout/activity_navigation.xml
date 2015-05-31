@@ -17,7 +17,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:background="@drawable/phome" />
+            android:contentDescription="Home"
+            android:background="@drawable/home" />
 
         <TextView
             android:id="@+id/appname"
@@ -27,7 +28,7 @@
             android:gravity="center"
             android:text="SYLAB"
             android:textColor="#FFFFFF"
-            android:textSize="26dp"
+            android:textSize="25sp"
             android:textStyle="bold"
             android:typeface="normal"
             android:background="#FFFF5722"
@@ -68,7 +69,7 @@
             android:id="@+id/lvExp"
             android:layout_width="200dp"
             android:layout_height="match_parent"
-            android:layout_gravity="left"
+            android:layout_gravity="start"
             android:background="#E6E6E6" >
         </ExpandableListView>
     </android.support.v4.widget.DrawerLayout>
