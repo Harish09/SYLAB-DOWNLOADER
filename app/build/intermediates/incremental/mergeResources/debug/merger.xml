@@ -5,9 +5,7 @@
         <item>Harris Jayaraj Songs</item>
         <item>AR Rahman Songs</item>
         <item>Ilayaraja Songs</item>
-    </string-array><string name="title_activity_pet_clinic">PetClinicActivity</string></file><file path="/home/faizaan/AndroidStudioProjects/SYLAB/app/src/main/res/values/styles.xml" qualifiers=""><style name="AppTheme" parent="AppBaseTheme">
-        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
-    </style><style name="AppBaseTheme" parent="android:Theme.Holo.Light.NoActionBar">
+    </string-array><string name="title_activity_pet_clinic">PetClinicActivity</string></file><file path="/home/faizaan/AndroidStudioProjects/SYLAB/app/src/main/res/values/styles.xml" qualifiers=""><style name="AppBaseTheme" parent="android:Theme.Holo.Light.NoActionBar">
         <!--
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to

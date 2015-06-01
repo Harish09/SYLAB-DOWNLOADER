@@ -12,7 +12,6 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.DrawerLayout.DrawerListener;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -38,9 +37,15 @@ public class NavigationActivity extends FragmentActivity {
     TextView appname;
     Button openButton;
 
+    private static final String ARG_PARAM1 = "fileName";
+    private static final String ARG_PARAM2 = "url";
+
+
     ExpandableListView expListView;
     ExpandableListAdapter listAdapter;
 
+    private String[] subjectNames = {"TE1", "M1", };
+    private String[] urls = {};
     List<String> listDataHeader;
     HashMap<String, List<String>> listDataChild;
 
@@ -95,10 +100,16 @@ public class NavigationActivity extends FragmentActivity {
                     case 0://Sem 1
                         switch (childPosition) {
                             case 0://Technical English 1
+                                fragment = new DisplayFragment();
+                                Bundle args = new Bundle();
+                                args.putString(ARG_PARAM1, subjectNames[groupPosition * 6 + childPosition]);
+                                args.putString(ARG_PARAM2, " ");
+                                fragment.setArguments(args);
                                 //fragment = new M1Fragment();
                                 break;
                             case 1://Technical Maths 1
                                 fragment = new M1Fragment();
+
                                 break;
                             case 2:
                                 //fragment = new HomeFragment();
