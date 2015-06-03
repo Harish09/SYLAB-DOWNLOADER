@@ -2,11 +2,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    >
 
-    <TextView android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Download Maths 2 Syllabus"
-        android:textColor="#000000"/>
+    <com.joanzapata.pdfview.PDFView
+        android:id="@+id/pdfView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </LinearLayout><!-- From: file:/E:/Sylab%20GIT/SYLAB-DOWNLOADER/app/src/main/res/layout/maths2x.xml -->

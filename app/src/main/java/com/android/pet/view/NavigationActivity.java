@@ -62,7 +62,7 @@ public class NavigationActivity extends FragmentActivity {
 		listAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
 		// setting list adapter
 		expListView.setAdapter(listAdapter);
-		fragment = new EarthFragment();
+		fragment = new HomeFragment();
 		getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fragment).commit();
 		mDrawerLayout.closeDrawer(expListView);
 
@@ -73,13 +73,13 @@ public class NavigationActivity extends FragmentActivity {
 				case 0://Sem 1
 					switch (childPosition) {
 					case 0://Technical English 1
-						//fragment = new MercuryFragment();
+						//fragment = new M1Fragment();
 						break;
 					case 1://Technical Maths 1
 						fragment = new VenusFragment();
 						break;
 					case 2:
-						//fragment = new EarthFragment();
+						//fragment = new HomeFragment();
 						break;
 					default:
 						break;
@@ -89,10 +89,10 @@ public class NavigationActivity extends FragmentActivity {
 				case 1://Sem 2
 					switch (childPosition) {
 					case 0:
-					//	fragment = new maths2();
+					//	fragment = new M2Fragment();
 						break;
 					case 1:
-						fragment = new maths2();
+						fragment = new M2Fragment();
 						break;
 					case 2:
 						fragment = new s2physics();
@@ -116,13 +116,13 @@ public class NavigationActivity extends FragmentActivity {
 				case 2://Sem 3
 					switch (childPosition) {
 					case 0:
-						//fragment = new MercuryFragment();
+						//fragment = new M1Fragment();
 						break;
 					case 1:
 						//fragment = new VenusFragment();
 						break;
 					case 2:
-						//fragment = new EarthFragment();
+						//fragment = new HomeFragment();
 						break;
 					default:
 						break;
@@ -156,13 +156,13 @@ public class NavigationActivity extends FragmentActivity {
 
 			switch(position){
 			case 0: //represents the fragment on clicking Sem 1 group title
-				fragment = new MercuryFragment();
+				fragment = new M1Fragment();
 				break;
 			case 1://sem 2 group title
 				fragment = new VenusFragment();
 				break;
 			case 2: //sem 3 group title
-				fragment = new EarthFragment();
+				fragment = new HomeFragment();
 				break;
 			default:
 				return;
@@ -198,8 +198,8 @@ public class NavigationActivity extends FragmentActivity {
 	};
 
 	private void prepareListData() {
-		listDataHeader = new ArrayList<String>();
-		listDataChild = new HashMap<String, List<String>>();
+		listDataHeader = new ArrayList<>();
+		listDataChild = new HashMap<>();
 
 		// Adding child data - All sem titles represent a group button
 		listDataHeader.add("Sem 1");
@@ -212,7 +212,7 @@ public class NavigationActivity extends FragmentActivity {
 		listDataHeader.add("Sem 8");
 
 		// Adding child data
-		List<String> s1 = new ArrayList<String>();
+		List<String> s1 = new ArrayList<>();
 		s1.add("Technical English 1");
 		s1.add("mathematics 1");
 		s1.add("Engineering Physics");
@@ -224,7 +224,7 @@ public class NavigationActivity extends FragmentActivity {
 		s1.add("Engineering Practise Lab");
 		s1.add("Computing Techniques Lab");
 
-		List<String> s2 = new ArrayList<String>();
+		List<String> s2 = new ArrayList<>();
 		s2.add("Technical English 2");
 		s2.add("Mathematics 2");
 		s2.add("principles of Computer Engineering");
@@ -235,7 +235,7 @@ public class NavigationActivity extends FragmentActivity {
 		s2.add("Digital Laboratory");
 
 
-		List<String> s3 = new ArrayList<String>();
+		List<String> s3 = new ArrayList<>();
 		s3.add("Algebra and Number Theory");
 		s3.add("EDC");
 		s3.add("Data Structures");
@@ -246,7 +246,7 @@ public class NavigationActivity extends FragmentActivity {
 		s3.add("Data Structures Lab");
 
 
-		List<String> s4 = new ArrayList<String>();
+		List<String> s4 = new ArrayList<>();
 		s4.add("Electrical Engineering and Control Systems");
 		s4.add("Design and Analysis of Algorithms");
 		s4.add("Operating Systems");
@@ -258,7 +258,7 @@ public class NavigationActivity extends FragmentActivity {
 
 
 
-		List<String> s5 = new ArrayList<String>();
+		List<String> s5 = new ArrayList<>();
 		s5.add("Object oriented Analysis and Design");
 		s5.add("Theory Of Computation");
 		s5.add("Software System Internals");
@@ -269,10 +269,10 @@ public class NavigationActivity extends FragmentActivity {
 		s5.add("Case Tools lab");
 		s5.add("Microprocessor lab");
 
-		List<String> s6 = new ArrayList<String>();
-		s6.add("Artificial Inteligence");
+		List<String> s6 = new ArrayList<>();
+		s6.add("Artificial Intelligence");
 		s6.add("DSP");
-		s6.add("Comouter Graphics and Multimedia");
+		s6.add("Computer Graphics and Multimedia");
 		s6.add("Compiler Design");
 		s6.add("Programing Paradigms");
 		s6.add("Creative and Innovative project");

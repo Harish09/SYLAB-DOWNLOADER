@@ -2,11 +2,32 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\GOD\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-v4\18.0.0\support-v4-18.0.0.jar"
+        jar="E:\Sylab GIT\SYLAB-DOWNLOADER\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\jars\classes.jar"
         jumboMode="false"
-        revision="22.0.1"
-        sha1="44ec51e9d395a47aab135e5e1b556c0007442156">
-        <dex dex="E:\SYLAB\NavigationDrawer\app\build\intermediates\pre-dexed\debug\support-v4-18.0.0-045d9df9e7ac79e184ffb224991587d2bb899485.jar" />
+        revision="21.1.2"
+        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
+        <dex dex="E:\Sylab GIT\SYLAB-DOWNLOADER\app\build\intermediates\pre-dexed\debug\classes-661ecacabf87126a4e14cd1e0e10edd388d90b09.jar" />
+    </item>
+    <item
+        jar="E:\Sylab GIT\SYLAB-DOWNLOADER\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\jars\libs\internal_impl-22.2.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
+        <dex dex="E:\Sylab GIT\SYLAB-DOWNLOADER\app\build\intermediates\pre-dexed\debug\internal_impl-22.2.0-7eb1d2ae772d27e95df39f70e43e746b8e75f969.jar" />
+    </item>
+    <item
+        jar="C:\Users\GOD\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.2.0\support-annotations-22.2.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
+        <dex dex="E:\Sylab GIT\SYLAB-DOWNLOADER\app\build\intermediates\pre-dexed\debug\support-annotations-22.2.0-b8e23dfc5f8ec78df525edf6c5baa25a0b59a4a7.jar" />
+    </item>
+    <item
+        jar="E:\Sylab GIT\SYLAB-DOWNLOADER\app\build\intermediates\exploded-aar\com.joanzapata.pdfview\android-pdfview\1.0.3\jars\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="96a80873ac73d8057e06fc4e69db7e0bf4e3dbc3">
+        <dex dex="E:\Sylab GIT\SYLAB-DOWNLOADER\app\build\intermediates\pre-dexed\debug\classes-640a19024e37ad079b8f6055ce208aac6b1bd1a4.jar" />
     </item>
 
 </items>
