@@ -25,4 +25,5 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile "com.android.support:support-v4:22.2.0"
     compile "com.joanzapata.pdfview:android-pdfview:1.0.3@aar"
+
 }
