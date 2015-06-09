@@ -40,22 +40,32 @@ MERGED from com.android.support:support-v4:22.2.0:22:5
 		ADDED from AndroidManifest.xml:12:9
 	android:theme
 		ADDED from AndroidManifest.xml:14:9
-activity#com.android.pet.view.NavigationActivity
+activity#com.android.pet.view.Splash
 ADDED from AndroidManifest.xml:15:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:18:13
 	android:label
 		ADDED from AndroidManifest.xml:17:13
+	android:theme
+		ADDED from AndroidManifest.xml:19:13
 	android:name
 		ADDED from AndroidManifest.xml:16:13
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from AndroidManifest.xml:18:13
+ADDED from AndroidManifest.xml:20:13
 action#android.intent.action.MAIN
-ADDED from AndroidManifest.xml:19:17
-	android:name
-		ADDED from AndroidManifest.xml:19:25
-category#android.intent.category.LAUNCHER
 ADDED from AndroidManifest.xml:21:17
 	android:name
-		ADDED from AndroidManifest.xml:21:27
+		ADDED from AndroidManifest.xml:21:25
+category#android.intent.category.LAUNCHER
+ADDED from AndroidManifest.xml:23:17
+	android:name
+		ADDED from AndroidManifest.xml:23:27
+activity#com.android.pet.view.NavigationActivity
+ADDED from AndroidManifest.xml:27:9
+	android:label
+		ADDED from AndroidManifest.xml:29:13
+	android:name
+		ADDED from AndroidManifest.xml:28:13
 uses-sdk
 INJECTED from AndroidManifest.xml:0:0 reason: use-sdk injection requested
 MERGED from com.android.support:support-v4:22.2.0:20:5

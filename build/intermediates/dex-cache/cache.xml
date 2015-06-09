@@ -2,6 +2,13 @@
 <items version="2" >
 
     <item
+        jar="/Users/karthick/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.0/support-annotations-22.2.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
+        <dex dex="/Users/karthick/AndroidStudioProjects/SYLAB-DOWNLOADER-Faizaan/app/build/intermediates/pre-dexed/debug/support-annotations-22.2.0-709ba40bea2463b4fc8ee3d9e2156ac29c37f36d.jar" />
+    </item>
+    <item
         jar="/Users/karthick/AndroidStudioProjects/SYLAB-DOWNLOADER-Faizaan/app/build/intermediates/exploded-aar/com.joanzapata.pdfview/android-pdfview/1.0.3/jars/classes.jar"
         jumboMode="false"
         revision="21.1.2"
@@ -21,13 +28,6 @@
         revision="21.1.2"
         sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
         <dex dex="/Users/karthick/AndroidStudioProjects/SYLAB-DOWNLOADER-Faizaan/app/build/intermediates/pre-dexed/debug/classes-f57a1981c87751d912438937711e0b59efb8514f.jar" />
-    </item>
-    <item
-        jar="/Users/karthick/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.0/support-annotations-22.2.0.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
-        <dex dex="/Users/karthick/AndroidStudioProjects/SYLAB-DOWNLOADER-Faizaan/app/build/intermediates/pre-dexed/debug/support-annotations-22.2.0-709ba40bea2463b4fc8ee3d9e2156ac29c37f36d.jar" />
     </item>
 
 </items>

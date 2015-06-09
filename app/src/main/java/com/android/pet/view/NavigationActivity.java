@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,8 +16,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
 import android.widget.ExpandableListView;
@@ -40,6 +39,7 @@ public class NavigationActivity extends FragmentActivity {
     private static final String ARG_PARAM1 = "fileName";
     private static final String ARG_PARAM2 = "url";
 
+//    Intent aboutIntent = new Intent(NavigationActivity.this, About.class );
 
     ExpandableListView expListView;
     ExpandableListAdapter listAdapter;
@@ -61,8 +61,8 @@ public class NavigationActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String fontPath = "fonts/Shadow Boxing.ttf";
-        String newFontPath = "fonts/CircleD_Font_by_CrazyForMusic.ttf";
+        String fontPath = "fonts/RobotoCondensed-Bold.ttf";
+        String newFontPath = "fonts/RobotoCondensed-Regular.ttf";
         setContentView(R.layout.activity_navigation);
 
         if(getActionBar() != null)
@@ -106,6 +106,13 @@ public class NavigationActivity extends FragmentActivity {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
 
+                if(groupPosition == 7 && childPosition == 0) {
+                    fragment = new About();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fragment).commit();
+                    mDrawerLayout.closeDrawer(expListView);
+                    return false;
+                }
+
                 fragment = new DisplayFragment();
                 Bundle args = new Bundle();
                 args.putString(ARG_PARAM1, subjectNames[groupPosition * 10 + childPosition]);
@@ -129,30 +136,6 @@ public class NavigationActivity extends FragmentActivity {
             }
         }
     };
-
-    /*private OnItemClickListener mDrawerItemClickedListener = new OnItemClickListener() {
-        @Override
-        public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
-
-            switch(position){
-                case 0: //represents the fragment on clicking Sem 1 group title
-                    fragment = new M1Fragment();
-                    break;
-                case 1://sem 2 group title
-                    fragment = new VenusFragment();
-                    break;
-                case 2: //sem 3 group title
-                    fragment = new HomeFragment();
-                    break;
-                default:
-                    return;
-            }
-
-            getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fragment).commit();
-
-            mDrawerLayout.closeDrawer(expListView);
-        }
-    };*/
 
     // Catch the events related to the drawer to arrange views according to this
     // action if necessary...
@@ -181,7 +164,7 @@ public class NavigationActivity extends FragmentActivity {
         listDataHeader = new ArrayList<>();
         listDataChild = new HashMap<>();
 
-        // Adding child data - All sem titles represent a group button
+        // Adding child data - All semester titles represent a group button
         listDataHeader.add("Semester 1");
         listDataHeader.add("Semester 2");
         listDataHeader.add("Semester 3");
@@ -189,7 +172,7 @@ public class NavigationActivity extends FragmentActivity {
         listDataHeader.add("Semester 5");
         listDataHeader.add("Semester 6");
         listDataHeader.add("Semester 7");
-
+        listDataHeader.add("More...");
 
         // Adding child data
         List<String> s1 = new ArrayList<>();
@@ -225,7 +208,6 @@ public class NavigationActivity extends FragmentActivity {
         s3.add("DBMS Lab");
         s3.add("Data Structures Lab");
 
-
         List<String> s4 = new ArrayList<>();
         s4.add("Electrical Engineering and Control Systems");
         s4.add("Design and Analysis of Algorithms");
@@ -235,8 +217,6 @@ public class NavigationActivity extends FragmentActivity {
         s4.add("Sofware Engineering");
         s4.add("Operating Systems Lab");
         s4.add("Java and Internet Programing Lab");
-
-
 
         List<String> s5 = new ArrayList<>();
         s5.add("Object oriented Analysis and Design");
@@ -267,13 +247,17 @@ public class NavigationActivity extends FragmentActivity {
         s7.add("Mobile Application Development Laboratory");
 
 
+        List<String> s8 = new ArrayList<>();
+        s8.add("About Us");
+
         listDataChild.put(listDataHeader.get(0), s1); // Header, Child data
         listDataChild.put(listDataHeader.get(1), s2);
         listDataChild.put(listDataHeader.get(2), s3);
         listDataChild.put(listDataHeader.get(3), s4);
         listDataChild.put(listDataHeader.get(4), s5);
         listDataChild.put(listDataHeader.get(5), s6);
-        listDataChild.put(listDataHeader.get(6),s7);
+        listDataChild.put(listDataHeader.get(6), s7);
+        listDataChild.put(listDataHeader.get(7), s8);
     }
 
     public class ExpandableListAdapter extends BaseExpandableListAdapter {

@@ -65,7 +65,7 @@ public class DisplayFragment extends Fragment {
             //TextView.class.cast(rootView.findViewById(R.id.labelText)).setText("Venus");
 
             fileDownloader = new FileDownloader();
-            file = new File(fileDownloader.getFilePath("/SYLAB/" + myFileName + ".pdf"));
+            file = new File(fileDownloader.getFilePath("/sylab/" + myFileName + ".pdf"));
 
             PDFView pdfView = (PDFView) rootView.findViewById(R.id.pdfView);
 
@@ -89,10 +89,10 @@ public class DisplayFragment extends Fragment {
             });
 
             if (fileDownloader.isReadyForDownload(this) && !fileDownloader.isFilePresent(file)) {
-                fileDownloader.DownloadFile(getActivity().getApplicationContext(), url, "/SYLAB/", myFileName, ".pdf");
+                fileDownloader.DownloadFile(getActivity().getApplicationContext(), url, "/sylab/", myFileName, ".pdf");
 
             } else {
-                if (fileDownloader.isFilePresent("/SYLAB/" + myFileName + ".pdf")) {
+                if (fileDownloader.isFilePresent("/sylab/" + myFileName + ".pdf")) {
                     Toast.makeText(getActivity().getApplicationContext(), "File already downloaded", Toast.LENGTH_SHORT).show();
                     temp.setVisibility(View.VISIBLE);
 
@@ -104,7 +104,7 @@ public class DisplayFragment extends Fragment {
 
                     Toast.makeText(getActivity().getApplicationContext(), "Network error", Toast.LENGTH_SHORT).show();
 
-                    if (fileDownloader.isFilePresent("/SYLAB/" + myFileName + ".pdf")) {
+                    if (fileDownloader.isFilePresent("/sylab/" + myFileName + ".pdf")) {
 
                         temp.setVisibility(View.VISIBLE);
                         pdfView.fromFile(file).defaultPage(1).enableSwipe(true).load();
