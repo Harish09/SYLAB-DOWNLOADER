@@ -16,7 +16,6 @@ import com.joanzapata.pdfview.PDFView;
 
 import java.io.File;
 
-
 public class DisplayFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "fileName";
@@ -28,14 +27,18 @@ public class DisplayFragment extends Fragment {
     private FileDownloader fileDownloader = null;
     private File file = null;
 
-
     public static DisplayFragment newInstance(String url, String fileName) {
+
         DisplayFragment fragment = new DisplayFragment();
+
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, fileName);
         args.putString(ARG_PARAM2, url);
+
         fragment.setArguments(args);
+
         return fragment;
+
     }
 
     public DisplayFragment() {
@@ -45,70 +48,76 @@ public class DisplayFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
             myFileName = getArguments().getString(ARG_PARAM1);
             url = getArguments().getString(ARG_PARAM2);
+
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        this.setHasOptionsMenu(true);
 
-        View rootView = inflater.inflate(R.layout.m2, null);
-        //TextView.class.cast(rootView.findViewById(R.id.labelText)).setText("Venus");
+            View rootView;
+            rootView = inflater.inflate(R.layout.m2, null);
+            //TextView.class.cast(rootView.findViewById(R.id.labelText)).setText("Venus");
 
-        fileDownloader = new FileDownloader();
-        file = new File(fileDownloader.getFilePath("/SYLAB/" + myFileName + ".pdf"));
+            fileDownloader = new FileDownloader();
+            file = new File(fileDownloader.getFilePath("/SYLAB/" + myFileName + ".pdf"));
 
-        PDFView pdfView = (PDFView) rootView.findViewById(R.id.pdfView);
+            PDFView pdfView = (PDFView) rootView.findViewById(R.id.pdfView);
 
-        Button temp = (Button) getActivity().findViewById(R.id.open_btn);
+            Button temp = (Button) getActivity().findViewById(R.id.open_btn);
 
-        temp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent target = new Intent(Intent.ACTION_VIEW);
-                target.setDataAndType(Uri.fromFile(file),"application/pdf");
-                target.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+            temp.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent target = new Intent(Intent.ACTION_VIEW);
+                    target.setDataAndType(Uri.fromFile(file), "application/pdf");
+                    target.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 
-                Intent intent = Intent.createChooser(target, "Open File");
-                try {
-                    startActivity(intent);
-                } catch (ActivityNotFoundException e) {
-                    Toast.makeText(getActivity().getApplicationContext(), "No other application for viewing PDFs", Toast.LENGTH_SHORT).show();
+                    Intent intent = Intent.createChooser(target, "Open File");
+                    try {
+                        startActivity(intent);
+                    } catch (ActivityNotFoundException e) {
+                        Toast.makeText(getActivity().getApplicationContext(), "No other application for viewing PDFs", Toast.LENGTH_SHORT).show();
+                    }
+
                 }
+            });
 
-            }
-        });
+            if (fileDownloader.isReadyForDownload(this) && !fileDownloader.isFilePresent(file)) {
+                fileDownloader.DownloadFile(getActivity().getApplicationContext(), url, "/SYLAB/", myFileName, ".pdf");
 
-
-        if(fileDownloader.isReadyForDownload(this) && !fileDownloader.isFilePresent(file)) {
-            fileDownloader.DownloadFile(getActivity().getApplicationContext(), url, "/SYLAB/", myFileName, ".pdf");
-
-        }
-        else {
-            if(fileDownloader.isFilePresent("/SYLAB/" + myFileName + ".pdf")) {
-                Toast.makeText(getActivity().getApplicationContext(), "File already downloaded", Toast.LENGTH_SHORT).show();
-                temp.setVisibility(View.VISIBLE);
-
-                pdfView.fromFile(file).defaultPage(1).enableSwipe(true).load();
-                return rootView;
-            }
-
-            if(!fileDownloader.getDeviceConnectedState()) {
-                Toast.makeText(getActivity().getApplicationContext(), "Network error", Toast.LENGTH_SHORT).show();
-                if(fileDownloader.isFilePresent("/SYLAB/" + myFileName +".pdf")) {
+            } else {
+                if (fileDownloader.isFilePresent("/SYLAB/" + myFileName + ".pdf")) {
+                    Toast.makeText(getActivity().getApplicationContext(), "File already downloaded", Toast.LENGTH_SHORT).show();
                     temp.setVisibility(View.VISIBLE);
+
                     pdfView.fromFile(file).defaultPage(1).enableSwipe(true).load();
                     return rootView;
                 }
-            }
 
-        }
+                if (!fileDownloader.getDeviceConnectedState()) {
+
+                    Toast.makeText(getActivity().getApplicationContext(), "Network error", Toast.LENGTH_SHORT).show();
+
+                    if (fileDownloader.isFilePresent("/SYLAB/" + myFileName + ".pdf")) {
+
+                        temp.setVisibility(View.VISIBLE);
+                        pdfView.fromFile(file).defaultPage(1).enableSwipe(true).load();
+                        return rootView;
+                    }
+                    else
+                        rootView = inflater.inflate(R.layout.comingsoon, null);
+                }
+
+            }
 
         return rootView;
     }
+
 }
 
