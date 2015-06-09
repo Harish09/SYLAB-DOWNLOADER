@@ -9,7 +9,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/sylab"
+        android:icon="@drawable/ico"
         android:label="@string/app_name"
         android:theme="@style/AppBaseTheme" >
         <activity
@@ -27,11 +27,7 @@
         <activity
             android:name="com.android.pet.view.NavigationActivity"
             android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 
