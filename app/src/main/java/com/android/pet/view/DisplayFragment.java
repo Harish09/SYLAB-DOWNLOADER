@@ -15,6 +15,10 @@ import com.doepiccoding.navigationdrawer.R;
 import com.joanzapata.pdfview.PDFView;
 
 import java.io.File;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class DisplayFragment extends Fragment {
 
@@ -27,6 +31,26 @@ public class DisplayFragment extends Fragment {
     private FileDownloader fileDownloader = null;
     private File file = null;
 
+    public boolean URLIsReachable(String urlString)
+    { int responseCode;
+        try
+        {
+            URL url = new URL(urlString);
+            HttpURLConnection urlConnection = (HttpURLConnection) url
+                    .openConnection();
+            responseCode = urlConnection.getResponseCode();
+            urlConnection.disconnect();
+            return responseCode != 200;
+        } catch (MalformedURLException e)
+        {
+            e.printStackTrace();
+            return false;
+        } catch (IOException e)
+        {
+            e.printStackTrace();
+            return false;
+        }
+    }
     public static DisplayFragment newInstance(String url, String fileName) {
 
         DisplayFragment fragment = new DisplayFragment();
@@ -64,7 +88,14 @@ public class DisplayFragment extends Fragment {
             rootView = inflater.inflate(R.layout.m2, null);
             //TextView.class.cast(rootView.findViewById(R.id.labelText)).setText("Venus");
 
-            fileDownloader = new FileDownloader();
+        if(!URLIsReachable(url))
+
+        {
+            Toast.makeText(getActivity().getApplicationContext(), "Coming Sooooooon...", Toast.LENGTH_SHORT).show();
+            return rootView;
+        }
+
+        fileDownloader = new FileDownloader();
             file = new File(fileDownloader.getFilePath("/sylab/" + myFileName + ".pdf"));
 
             PDFView pdfView = (PDFView) rootView.findViewById(R.id.pdfView);
