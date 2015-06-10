@@ -121,7 +121,8 @@ public class NavigationActivity extends FragmentActivity {
 
                 getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fragment).commit();
                 mDrawerLayout.closeDrawer(expListView);
-                return false;
+              //  return false;
+
             }
         });
     }

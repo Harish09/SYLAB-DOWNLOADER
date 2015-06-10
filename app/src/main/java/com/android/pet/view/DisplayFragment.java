@@ -92,6 +92,7 @@ public class DisplayFragment extends Fragment {
 
         {
             Toast.makeText(getActivity().getApplicationContext(), "Coming Sooooooon...", Toast.LENGTH_SHORT).show();
+            rootView = inflater.inflate(R.layout.comingsoon, null);
             return rootView;
         }
 
@@ -141,8 +142,7 @@ public class DisplayFragment extends Fragment {
                         pdfView.fromFile(file).defaultPage(1).enableSwipe(true).load();
                         return rootView;
                     }
-                    else
-                        rootView = inflater.inflate(R.layout.comingsoon, null);
+
                 }
 
             }
