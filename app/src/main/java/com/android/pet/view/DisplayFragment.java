@@ -5,9 +5,11 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.URLUtil;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -31,26 +33,23 @@ public class DisplayFragment extends Fragment {
     private FileDownloader fileDownloader = null;
     private File file = null;
 
-    public boolean URLIsReachable(String urlString)
-    { int responseCode;
-        try
-        {
-            URL url = new URL(urlString);
-            HttpURLConnection urlConnection = (HttpURLConnection) url
-                    .openConnection();
-            responseCode = urlConnection.getResponseCode();
-            urlConnection.disconnect();
-            return responseCode != 200;
-        } catch (MalformedURLException e)
-        {
-            e.printStackTrace();
-            return false;
-        } catch (IOException e)
-        {
+    public static boolean exists(String URLName){
+        try {
+            HttpURLConnection.setFollowRedirects(false);
+            // note : you may also need
+            //        HttpURLConnection.setInstanceFollowRedirects(false)
+            HttpURLConnection con =
+                    (HttpURLConnection) new URL(URLName).openConnection();
+            con.setRequestMethod("HEAD");
+            return (con.getResponseCode() == HttpURLConnection.HTTP_OK);
+        }
+        catch (Exception e) {
             e.printStackTrace();
             return false;
         }
     }
+  public int flag;
+
     public static DisplayFragment newInstance(String url, String fileName) {
 
         DisplayFragment fragment = new DisplayFragment();
@@ -66,7 +65,7 @@ public class DisplayFragment extends Fragment {
     }
 
     public DisplayFragment() {
-        // Required empty public constructor
+
     }
 
     @Override
@@ -88,13 +87,7 @@ public class DisplayFragment extends Fragment {
             rootView = inflater.inflate(R.layout.m2, null);
             //TextView.class.cast(rootView.findViewById(R.id.labelText)).setText("Venus");
 
-        if(!URLIsReachable(url))
 
-        {
-            Toast.makeText(getActivity().getApplicationContext(), "Coming Sooooooon...", Toast.LENGTH_SHORT).show();
-            rootView = inflater.inflate(R.layout.comingsoon, null);
-            return rootView;
-        }
 
         fileDownloader = new FileDownloader();
             file = new File(fileDownloader.getFilePath("/sylab/" + myFileName + ".pdf"));
@@ -102,6 +95,7 @@ public class DisplayFragment extends Fragment {
             PDFView pdfView = (PDFView) rootView.findViewById(R.id.pdfView);
 
             Button temp = (Button) getActivity().findViewById(R.id.open_btn);
+
 
             temp.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -120,32 +114,39 @@ public class DisplayFragment extends Fragment {
                 }
             });
 
-            if (fileDownloader.isReadyForDownload(this) && !fileDownloader.isFilePresent(file)) {
-                fileDownloader.DownloadFile(getActivity().getApplicationContext(), url, "/sylab/", myFileName, ".pdf");
+                                if (fileDownloader.isReadyForDownload(this) && !fileDownloader.isFilePresent(file)) {
+                                    fileDownloader.DownloadFile(getActivity().getApplicationContext(), url, "/sylab/", myFileName, ".pdf");
 
-            } else {
-                if (fileDownloader.isFilePresent("/sylab/" + myFileName + ".pdf")) {
-                    Toast.makeText(getActivity().getApplicationContext(), "File already downloaded", Toast.LENGTH_SHORT).show();
-                    temp.setVisibility(View.VISIBLE);
+                                } else {
 
-                    pdfView.fromFile(file).defaultPage(1).enableSwipe(true).load();
-                    return rootView;
-                }
+                                    if (fileDownloader.isFilePresent("/sylab/" + myFileName + ".pdf")) {
+                                        Toast.makeText(getActivity().getApplicationContext(), "File already downloaded", Toast.LENGTH_SHORT).show();
+                                        temp.setVisibility(View.VISIBLE);
 
-                if (!fileDownloader.getDeviceConnectedState()) {
+                                        pdfView.fromFile(file).defaultPage(1).enableSwipe(true).load();
+                                        return rootView;
+                                    }
 
-                    Toast.makeText(getActivity().getApplicationContext(), "Network error", Toast.LENGTH_SHORT).show();
+                                    if (!fileDownloader.getDeviceConnectedState()) {
 
-                    if (fileDownloader.isFilePresent("/sylab/" + myFileName + ".pdf")) {
+                                        Toast.makeText(getActivity().getApplicationContext(), "Network error", Toast.LENGTH_SHORT).show();
 
-                        temp.setVisibility(View.VISIBLE);
-                        pdfView.fromFile(file).defaultPage(1).enableSwipe(true).load();
-                        return rootView;
-                    }
+                                        if (fileDownloader.isFilePresent("/sylab/" + myFileName + ".pdf")) {
 
-                }
+                                            temp.setVisibility(View.VISIBLE);
+                                            pdfView.fromFile(file).defaultPage(1).enableSwipe(true).load();
+                                            return rootView;
+                                        }
+                                      if(!exists(url) &&  !fileDownloader.isFilePresent(file))
+                                      {
+                                          Toast.makeText(getActivity().getApplicationContext(), "C Sooon", Toast.LENGTH_SHORT).show();
+                                          rootView = inflater.inflate(R.layout.comingsoon, null);
+                                          return rootView;
+                                      }
+                                    }
 
-            }
+                                }
+
 
         return rootView;
     }
