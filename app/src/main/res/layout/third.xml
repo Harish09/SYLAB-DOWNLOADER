@@ -7,7 +7,7 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:src="@drawable/fb"
+        android:src="@drawable/ceglogo"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingTop="20dp"
@@ -22,9 +22,9 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="WELCOME TO"
         android:id="@+id/textView16"
+        android:layout_marginTop="70dp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="114dp"/>
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -32,7 +32,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="DCSE SYLLABUS APP"
         android:id="@+id/textView17"
-        android:layout_marginBottom="115dp"
+        android:layout_marginBottom="53dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
