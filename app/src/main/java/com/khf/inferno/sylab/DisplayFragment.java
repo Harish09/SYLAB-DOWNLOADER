@@ -15,37 +15,20 @@ import com.doepiccoding.navigationdrawer.R;
 import com.joanzapata.pdfview.PDFView;
 
 import java.io.File;
-import java.net.HttpURLConnection;
-import java.net.URL;
 
 public class DisplayFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "fileName";
     private static final String ARG_PARAM2 = "url";
 
+    private Button openBtn;
+    private Button refBtn;
+
     private String myFileName;
     private String url;
 
     private FileDownloader fileDownloader = null;
     private File file = null;
-
-    public static boolean exists(String URLName){
-        try {
-            HttpURLConnection.setFollowRedirects(false);
-            // note : you may also need
-            //        HttpURLConnection.setInstanceFollowRedirects(false)
-            HttpURLConnection con =
-                    (HttpURLConnection) new URL(URLName).openConnection();
-            con.setRequestMethod("HEAD");
-            return (con.getResponseCode() == HttpURLConnection.HTTP_OK);
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    public int flag;
 
     public static DisplayFragment newInstance(String url, String fileName) {
 
@@ -56,13 +39,15 @@ public class DisplayFragment extends Fragment {
         args.putString(ARG_PARAM2, url);
 
         fragment.setArguments(args);
-
         return fragment;
 
     }
 
     public DisplayFragment() { }
 
+    public void refreshFragment() {
+        getFragmentManager().beginTransaction().replace(R.id.content_frame, this).detach(this).attach(this).commit();
+    }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +56,14 @@ public class DisplayFragment extends Fragment {
             myFileName = getArguments().getString(ARG_PARAM1);
             url = getArguments().getString(ARG_PARAM2);
         }
+
+
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        openBtn.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -84,9 +77,10 @@ public class DisplayFragment extends Fragment {
         file = new File(fileDownloader.getFilePath("/sylab/" + myFileName + ".pdf"));
 
         PDFView pdfView = (PDFView) rootView.findViewById(R.id.pdfView);
-        Button temp = (Button) getActivity().findViewById(R.id.open_btn);
+        openBtn = (Button) getActivity().findViewById(R.id.open_btn);
+        refBtn = (Button) getActivity().findViewById(R.id.refresh_btn);
 
-        temp.setOnClickListener(new View.OnClickListener() {
+        openBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -103,9 +97,17 @@ public class DisplayFragment extends Fragment {
             }
         });
 
+        refBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                refreshFragment();
+                Toast.makeText(getActivity().getApplicationContext(), "File already downloaded", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         if (fileDownloader.isFilePresent("/sylab/" + myFileName + ".pdf")) {
             //Toast.makeText(getActivity().getApplicationContext(), "File already downloaded", Toast.LENGTH_SHORT).show();
-            temp.setVisibility(View.VISIBLE);
+            openBtn.setVisibility(View.VISIBLE);
             pdfView.fromFile(file).defaultPage(1).enableSwipe(true).load();
             return rootView;
         }
@@ -113,41 +115,13 @@ public class DisplayFragment extends Fragment {
         if (fileDownloader.isReadyForDownload(this)) {
             rootView = inflater.inflate(R.layout.comingsoon, null);
             long id = fileDownloader.DownloadFile(getActivity().getApplicationContext(), url, "/sylab/", myFileName, ".pdf");
-            if(fileDownloader.isValidDownload(id))
-                Toast.makeText(getActivity().getApplicationContext(), "File is being downloaded. Refresh to see changes", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity().getApplicationContext(), "File is being downloaded. Refresh to see changes.", Toast.LENGTH_SHORT).show();
             return rootView;
         } else {
             rootView = inflater.inflate(R.layout.comingsoon, null);
             Toast.makeText(getActivity().getApplicationContext(), "Network error. Check your network connections to download the file.", Toast.LENGTH_SHORT).show();
             return rootView;
         }
-
-/*        if (fileDownloader.isReadyForDownload(this) && !fileDownloader.isFilePresent(file)) {
-            fileDownloader.DownloadFile(getActivity().getApplicationContext(), url, "/sylab/", myFileName, ".pdf");
-        } else {
-            if (fileDownloader.isFilePresent("/sylab/" + myFileName + ".pdf")) {
-                Toast.makeText(getActivity().getApplicationContext(), "File already downloaded", Toast.LENGTH_SHORT).show();
-                temp.setVisibility(View.VISIBLE);
-                pdfView.fromFile(file).defaultPage(1).enableSwipe(true).load();
-                return rootView;
-            }
-            if (!fileDownloader.getDeviceConnectedState()) {
-                Toast.makeText(getActivity().getApplicationContext(), "Network error", Toast.LENGTH_SHORT).show();
-                if (fileDownloader.isFilePresent("/sylab/" + myFileName + ".pdf")) {
-                    temp.setVisibility(View.VISIBLE);
-                    pdfView.fromFile(file).defaultPage(1).enableSwipe(true).load();
-                    return rootView;
-                }
-
-                if(!exists(url) &&  !fileDownloader.isFilePresent(file))
-                {
-                    Toast.makeText(getActivity().getApplicationContext(), "C Sooon", Toast.LENGTH_SHORT).show();
-                    rootView = inflater.inflate(R.layout.comingsoon, null);
-                    return rootView;
-                }
-            }
-        }*/
-
     }
 }
 

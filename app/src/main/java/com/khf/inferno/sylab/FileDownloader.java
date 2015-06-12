@@ -108,7 +108,7 @@ public class FileDownloader {
 
         DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
         request.setDescription("Required component of the application");
-        request.setTitle("Syllabus.pdf");
+        request.setTitle(fileName + ".pdf");
 
         // in order for this if to run, you must use the android 3.2 to compile your app
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
