@@ -1,4 +1,4 @@
-package com.android.pet.view;
+package com.khf.inferno.sylab;
 
 import android.support.v4.app.Fragment;
 import android.content.Intent;

@@ -1,4 +1,4 @@
-package com.android.pet.view;
+package com.khf.inferno.sylab;
 
 import android.graphics.Typeface;
 import android.os.Bundle;

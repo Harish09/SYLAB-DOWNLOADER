@@ -1,11 +1,10 @@
-package com.android.pet.view;
+package com.khf.inferno.sylab;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -39,8 +38,6 @@ public class NavigationActivity extends FragmentActivity {
     private static final String ARG_PARAM1 = "fileName";
     private static final String ARG_PARAM2 = "url";
 
-//    Intent aboutIntent = new Intent(NavigationActivity.this, About.class );
-
     ExpandableListView expListView;
     ExpandableListAdapter listAdapter;
 
@@ -50,7 +47,7 @@ public class NavigationActivity extends FragmentActivity {
             "ANT", "EDC", "DS", "DBMS", "EVS", "CA", "DBMS-Lab", "DS-Lab", "PAD", "PAD",
             "EECS", "DAA", "OS", "JIP", "PQT", "SE", "JIP-Lab", "PAD", "PAD", "PAD",
             "OOAD", "TOC", "SSI", "MP", "DCCN", "TW", "CN-Lab", "CT-Lab", "MP-Lab", "PAD",
-            "AI", "DSP", "CG", "CD", "PP", "CG-Lab", "PAD", "PAD", "PAD",
+            "AI", "DSP", "CG", "CD", "PP", "CG-Lab", "PAD", "PAD", "PAD", "PAD",
             "MPC", "SIC", "POM", "PARALLEL", "SD-Lab", "MAD-Lab", "PAD", "PAD", "PAD", "PAD"
     };
     private String baseUrl = "http://cs.annauniv.edu/academic/ug2012/";
@@ -235,7 +232,7 @@ public class NavigationActivity extends FragmentActivity {
         s6.add("DSP");
         s6.add("Computer Graphics and Multimedia");
         s6.add("Compiler Design");
-        s6.add("Programing Paradigms");
+        s6.add("Programming Paradigms");
         s6.add("Creative and Innovative Project");
         s6.add("Computer Graphics and Multimedia Laboratory");
 
@@ -249,7 +246,7 @@ public class NavigationActivity extends FragmentActivity {
 
 
         List<String> s8 = new ArrayList<>();
-        s8.add("About Us");
+        s8.add("About");
 
         listDataChild.put(listDataHeader.get(0), s1); // Header, Child data
         listDataChild.put(listDataHeader.get(1), s2);

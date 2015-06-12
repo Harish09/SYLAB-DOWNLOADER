@@ -1,7 +1,8 @@
-package com.android.pet.view;
+package com.khf.inferno.sylab;
 
 import android.app.Activity;
 import android.app.DownloadManager;
+import android.database.Cursor;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.content.Context;
@@ -11,13 +12,13 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.support.annotation.Nullable;
-import android.widget.Toast;
 
 import java.io.File;
 
 public class FileDownloader {
 
     private ConnectivityManager connectivityManager;
+    private DownloadManager manager;
 
     private boolean deviceConnected = false;
 
@@ -76,13 +77,11 @@ public class FileDownloader {
 
         if(Parent instanceof Fragment)
             connectivityManager = (ConnectivityManager) ((Fragment)Parent).getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
-        //if(fragment != null)
 
         if(Parent instanceof Activity)
             connectivityManager = (ConnectivityManager) ((Activity)Parent).getSystemService(Context.CONNECTIVITY_SERVICE);
 
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
-
         if (networkInfo != null && networkInfo.isConnected())
             setDeviceConnected(true);
 
@@ -93,18 +92,15 @@ public class FileDownloader {
     public boolean isFilePresent(String pathRelativeToRoot) {
         String totalPath = Environment.getExternalStorageDirectory().toString() + pathRelativeToRoot;
         return new File(totalPath).exists();
-
     }
 
     public boolean isFilePresent(File file) {
         return file.exists();
     }
 
-    public String getFilePath(String pathRelativeToRoot) {
-        return Environment.getExternalStorageDirectory().toString() + pathRelativeToRoot;
-    }
+    public String getFilePath(String pathRelativeToRoot) { return Environment.getExternalStorageDirectory().toString() + pathRelativeToRoot; }
 
-    public void DownloadFile(@NonNull Context context, @NonNull String url, @Nullable String dirName, @Nullable String fileName, @Nullable String fileExtension) {
+    public long DownloadFile(@NonNull Context context, @NonNull String url, @Nullable String dirName, @Nullable String fileName, @Nullable String fileExtension) {
 
         this.setDirName(dirName);
         this.setFileName(fileName);
@@ -122,9 +118,14 @@ public class FileDownloader {
         request.setDestinationInExternalPublicDir(getDirName(), getFileName() + getFileExtension());
 
         // get download service and enqueue file
-        DownloadManager manager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
-        manager.enqueue(request);
+        manager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
 
-        Toast.makeText(context, "File downloaded at " + Environment.getExternalStorageDirectory() + getDirName(), Toast.LENGTH_SHORT).show();
+        return manager.enqueue(request);
+    }
+
+    public boolean isValidDownload(long downloadID ) {
+
+        Cursor c = manager.query(new DownloadManager.Query().setFilterById(downloadID));
+        return c.moveToFirst() && c.getInt(c.getColumnIndex(DownloadManager.COLUMN_STATUS)) == DownloadManager.STATUS_SUCCESSFUL;
     }
 }
