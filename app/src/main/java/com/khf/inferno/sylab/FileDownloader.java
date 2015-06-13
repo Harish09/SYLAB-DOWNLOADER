@@ -130,7 +130,7 @@ public class FileDownloader {
         if(downloadID == 0) return false;
         try {
             Cursor c = manager.query(new DownloadManager.Query().setFilterById(downloadID));
-            if ((c.moveToFirst() && (c.getInt(c.getColumnIndex(DownloadManager.COLUMN_STATUS)) == DownloadManager.STATUS_FAILED)) || (c.getInt(c.getColumnIndex(DownloadManager.COLUMN_STATUS)) == DownloadManager.STATUS_RUNNING) {
+            if ((c.moveToFirst() && (c.getInt(c.getColumnIndex(DownloadManager.COLUMN_STATUS)) == DownloadManager.STATUS_FAILED)) || (c.getInt(c.getColumnIndex(DownloadManager.COLUMN_STATUS)) == DownloadManager.STATUS_RUNNING)) {
                 canFileBeDownloaded = false;
                 return true;
             }
