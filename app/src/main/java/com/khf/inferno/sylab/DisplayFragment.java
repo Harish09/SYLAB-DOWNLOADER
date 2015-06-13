@@ -30,6 +30,8 @@ public class DisplayFragment extends Fragment {
     private FileDownloader fileDownloader = null;
     private File file = null;
 
+    private static long ID = 0;
+
     public static DisplayFragment newInstance(String url, String fileName) {
 
         DisplayFragment fragment = new DisplayFragment();
@@ -43,7 +45,7 @@ public class DisplayFragment extends Fragment {
 
     }
 
-    public DisplayFragment() { }
+    public DisplayFragment() {}
 
     public void refreshFragment() {
         getFragmentManager().beginTransaction().replace(R.id.content_frame, this).detach(this).attach(this).commit();
@@ -56,19 +58,17 @@ public class DisplayFragment extends Fragment {
             myFileName = getArguments().getString(ARG_PARAM1);
             url = getArguments().getString(ARG_PARAM2);
         }
-
-
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
         openBtn.setVisibility(View.INVISIBLE);
+        refBtn.setVisibility(View.INVISIBLE);
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View rootView;
         rootView = inflater.inflate(R.layout.m2, null);
@@ -92,31 +92,33 @@ public class DisplayFragment extends Fragment {
                 try {
                     startActivity(intent);
                 } catch (ActivityNotFoundException e) {
-                    Toast.makeText(getActivity().getApplicationContext(), "No other application for viewing PDFs", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity().getApplicationContext(), "No application(s) for viewing PDFs", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
         refBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 refreshFragment();
-                Toast.makeText(getActivity().getApplicationContext(), "File already downloaded", Toast.LENGTH_SHORT).show();
             }
         });
 
         if (fileDownloader.isFilePresent("/sylab/" + myFileName + ".pdf")) {
-            //Toast.makeText(getActivity().getApplicationContext(), "File already downloaded", Toast.LENGTH_SHORT).show();
             openBtn.setVisibility(View.VISIBLE);
             pdfView.fromFile(file).defaultPage(1).enableSwipe(true).load();
             return rootView;
         }
 
-        if (fileDownloader.isReadyForDownload(this)) {
+        if (fileDownloader.isReadyForDownload(this) && !fileDownloader.isValidDownload(ID)) {
             rootView = inflater.inflate(R.layout.comingsoon, null);
-            long id = fileDownloader.DownloadFile(getActivity().getApplicationContext(), url, "/sylab/", myFileName, ".pdf");
-            Toast.makeText(getActivity().getApplicationContext(), "File is being downloaded. Refresh to see changes.", Toast.LENGTH_SHORT).show();
+            ID = fileDownloader.DownloadFile(getActivity().getApplicationContext(), url, "/sylab/", myFileName, ".pdf");
+            Toast.makeText(getActivity().getApplicationContext(), "File is being downloaded. Refresh after a few moments to see changes.", Toast.LENGTH_SHORT).show();
+            refBtn.setVisibility(View.VISIBLE);
             return rootView;
+        }
+        if (fileDownloader.isValidDownload(ID)){
+            return inflater.inflate(R.layout.comingsoon, null);
         } else {
             rootView = inflater.inflate(R.layout.comingsoon, null);
             Toast.makeText(getActivity().getApplicationContext(), "Network error. Check your network connections to download the file.", Toast.LENGTH_SHORT).show();
@@ -124,4 +126,3 @@ public class DisplayFragment extends Fragment {
         }
     }
 }
-

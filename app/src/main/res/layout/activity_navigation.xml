@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="#FDFFFF"
     android:orientation="vertical" >
 
     <LinearLayout
@@ -14,16 +14,15 @@
 
         <ImageView
             android:id="@+id/home"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:contentDescription="Home"
             android:background="@drawable/home" />
 
         <TextView
             android:id="@+id/appname"
             android:layout_width="0dp"
-            android:layout_height="55dp"
+            android:layout_height="45dp"
             android:layout_weight="1.06"
             android:gravity="center"
             android:text="SYLAB"
@@ -32,19 +31,19 @@
             android:textStyle="bold"
             android:typeface="normal"
             android:background="#FF00796B"
-
             android:textIsSelectable="false" />
 
         <Button
             android:id="@+id/refresh_btn"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:background="@drawable/refresh"/>
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:background="@drawable/refresh"
+            android:visibility="invisible"/>
 
         <Button
             android:id="@+id/open_btn"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:background="@drawable/launch"
             android:visibility="invisible"
             />

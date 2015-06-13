@@ -125,7 +125,10 @@ public class FileDownloader {
 
     public boolean isValidDownload(long downloadID ) {
 
+        if(downloadID == 0) return false;
         Cursor c = manager.query(new DownloadManager.Query().setFilterById(downloadID));
-        return c.moveToFirst() && c.getInt(c.getColumnIndex(DownloadManager.COLUMN_STATUS)) == DownloadManager.STATUS_SUCCESSFUL;
+        if ((c.moveToFirst() && (c.getInt(c.getColumnIndex(DownloadManager.COLUMN_STATUS)) == DownloadManager.STATUS_FAILED)) || (c.getInt(c.getColumnIndex(DownloadManager.COLUMN_STATUS)) == DownloadManager.STATUS_RUNNING))
+            return true;
+        else return false;
     }
 }
