@@ -110,7 +110,7 @@ public class DisplayFragment extends Fragment {
             return rootView;
         }
 
-        if (fileDownloader.isReadyForDownload(this) && !fileDownloader.isValidDownload(ID)) {
+        if (fileDownloader.isReadyForDownload(this) && !fileDownloader.isValidDownload(ID) && fileDownloader.canFileBeDownloaded) {
             rootView = inflater.inflate(R.layout.comingsoon, null);
             ID = fileDownloader.DownloadFile(getActivity().getApplicationContext(), url, "/sylab/", myFileName, ".pdf");
             Toast.makeText(getActivity().getApplicationContext(), "File is being downloaded. Refresh after a few moments to see changes.", Toast.LENGTH_SHORT).show();
@@ -118,6 +118,7 @@ public class DisplayFragment extends Fragment {
             return rootView;
         }
         if (fileDownloader.isValidDownload(ID)){
+            Toast.makeText(getActivity().getApplicationContext(), "File is not available to download.", Toast.LENGTH_SHORT).show();
             return inflater.inflate(R.layout.comingsoon, null);
         } else {
             rootView = inflater.inflate(R.layout.comingsoon, null);

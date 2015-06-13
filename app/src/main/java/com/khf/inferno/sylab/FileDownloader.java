@@ -30,6 +30,8 @@ public class FileDownloader {
 
     private String dirName = "/file_downloader/";
 
+    public boolean canFileBeDownloaded = true;
+
     public String getFileExtension() {
         return fileExtension;
     }
@@ -126,9 +128,16 @@ public class FileDownloader {
     public boolean isValidDownload(long downloadID ) {
 
         if(downloadID == 0) return false;
-        Cursor c = manager.query(new DownloadManager.Query().setFilterById(downloadID));
-        if ((c.moveToFirst() && (c.getInt(c.getColumnIndex(DownloadManager.COLUMN_STATUS)) == DownloadManager.STATUS_FAILED)) || (c.getInt(c.getColumnIndex(DownloadManager.COLUMN_STATUS)) == DownloadManager.STATUS_RUNNING))
-            return true;
-        else return false;
+        try {
+            Cursor c = manager.query(new DownloadManager.Query().setFilterById(downloadID));
+            if ((c.moveToFirst() && (c.getInt(c.getColumnIndex(DownloadManager.COLUMN_STATUS)) == DownloadManager.STATUS_FAILED)) || (c.getInt(c.getColumnIndex(DownloadManager.COLUMN_STATUS)) == DownloadManager.STATUS_RUNNING) {
+                canFileBeDownloaded = false;
+                return true;
+            }
+            else return false;
+        } catch(Exception e) {
+            canFileBeDownloaded = false;
+            return false;
+        }
     }
 }
