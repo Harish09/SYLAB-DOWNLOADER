@@ -8,6 +8,8 @@
 
     <string name="error">Oops! Looks like we don\'t have that file yet. We will update it soon.</string>
     <string name="code">Source Code</string>
+    <string name="developer">Developers</string>
+    <string name="license">License</string>
 
     <string name="alias_faizaan">Aulisius.F</string>
     <string name="alias_harish">Ranguski</string>
@@ -17,5 +19,7 @@
     <string name="ranguski">Harish Murali</string>
     <string name="mac">Karthick Ramjee</string>
     <string name="pdfView">Android-pdfView</string>
+
+    <string name="version">v1.0.2</string>
 
 </resources>

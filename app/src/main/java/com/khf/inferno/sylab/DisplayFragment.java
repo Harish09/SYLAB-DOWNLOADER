@@ -30,7 +30,7 @@ public class DisplayFragment extends Fragment {
     private FileDownloader fileDownloader = null;
     private File file = null;
 
-    private static long ID = 0;
+    //private static long ID = 0;
 
     public static DisplayFragment newInstance(String url, String fileName) {
 
@@ -106,13 +106,14 @@ public class DisplayFragment extends Fragment {
 
         if (fileDownloader.isFilePresent("/sylab/" + myFileName + ".pdf")) {
             openBtn.setVisibility(View.VISIBLE);
+            refBtn.setVisibility(View.INVISIBLE);
             pdfView.fromFile(file).defaultPage(1).enableSwipe(true).load();
             return rootView;
         }
 
         if (fileDownloader.isReadyForDownload(this) && fileDownloader.canFileBeDownloaded) {
             rootView = inflater.inflate(R.layout.comingsoon, null);
-            ID = fileDownloader.DownloadFile(getActivity().getApplicationContext(), url, "/sylab/", myFileName, ".pdf");
+            fileDownloader.DownloadFile(getActivity().getApplicationContext(), url, "/sylab/", myFileName, ".pdf");
             Toast.makeText(getActivity().getApplicationContext(), "File is being downloaded. Refresh after a few moments to see changes.", Toast.LENGTH_SHORT).show();
             refBtn.setVisibility(View.VISIBLE);
             return rootView;

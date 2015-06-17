@@ -45,7 +45,7 @@ public class NavigationActivity extends FragmentActivity {
             "TE1", "M1", "EP", "EC", "EG", "CT", "PL", "CL", "EPL", "CP-Lab",
             "TE2", "M2", "PCE", "CP", "PC++", "DPSD", "PRG-Lab", "DIGITAL-Lab", "PAD", "PAD",
             "ANT", "EDC", "DS", "DBMS", "EVS", "CA", "DBMS-Lab", "DS-Lab", "PAD", "PAD",
-            "EECS", "DAA", "OS", "JIP", "PQT", "SE", "JIP-Lab", "PAD", "PAD", "PAD",
+            "EECS", "DAA", "OS", "JIP", "PQT", "SE", "OS-Lab", "JIP-Lab", "PAD", "PAD",
             "OOAD", "TOC", "SSI", "MP", "DCCN", "TW", "CN-Lab", "CT-Lab", "MP-Lab", "PAD",
             "AI", "DSP", "CG", "CD", "PP", "CG-Lab", "PAD", "PAD", "PAD", "PAD",
             "MPC", "SIC", "POM", "PARALLEL", "SD-Lab", "MAD-Lab", "PAD", "PAD", "PAD", "PAD"
