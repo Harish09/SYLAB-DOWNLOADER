@@ -25,7 +25,7 @@
             android:layout_height="45dp"
             android:layout_weight="1.06"
             android:gravity="center"
-            android:text="SYLAB"
+            android:text="@string/app_name"
             android:textColor="#FFFFFF"
             android:textSize="25sp"
             android:textStyle="bold"
@@ -57,15 +57,11 @@
         android:layout_height="0dp"
         android:layout_weight="1" >
 
-        <!-- Drawer Content -->
-
         <FrameLayout
             android:id="@+id/content_frame"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="10dp"/>
-
-        <!-- The navigation menu -->
 
         <ExpandableListView
             android:id="@+id/lvExp"

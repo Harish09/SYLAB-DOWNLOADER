@@ -134,7 +134,10 @@ public class FileDownloader {
                 canFileBeDownloaded = false;
                 return true;
             }
-            else return false;
+            else{
+                canFileBeDownloaded = true;
+                return false;
+            }
         } catch(Exception e) {
             canFileBeDownloaded = false;
             return false;

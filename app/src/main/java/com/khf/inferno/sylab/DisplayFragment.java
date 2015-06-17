@@ -71,7 +71,7 @@ public class DisplayFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View rootView;
-        rootView = inflater.inflate(R.layout.m2, null);
+        rootView = inflater.inflate(R.layout.fragment_display, null);
 
         fileDownloader = new FileDownloader();
         file = new File(fileDownloader.getFilePath("/sylab/" + myFileName + ".pdf"));
@@ -110,20 +110,18 @@ public class DisplayFragment extends Fragment {
             return rootView;
         }
 
-        if (fileDownloader.isReadyForDownload(this) && !fileDownloader.isValidDownload(ID) && fileDownloader.canFileBeDownloaded) {
+        if (fileDownloader.isReadyForDownload(this) && fileDownloader.canFileBeDownloaded) {
             rootView = inflater.inflate(R.layout.comingsoon, null);
             ID = fileDownloader.DownloadFile(getActivity().getApplicationContext(), url, "/sylab/", myFileName, ".pdf");
             Toast.makeText(getActivity().getApplicationContext(), "File is being downloaded. Refresh after a few moments to see changes.", Toast.LENGTH_SHORT).show();
             refBtn.setVisibility(View.VISIBLE);
             return rootView;
         }
-        if (fileDownloader.isValidDownload(ID)){
-            Toast.makeText(getActivity().getApplicationContext(), "File is not available to download.", Toast.LENGTH_SHORT).show();
-            return inflater.inflate(R.layout.comingsoon, null);
-        } else {
+        if (!fileDownloader.isReadyForDownload(this)) {
             rootView = inflater.inflate(R.layout.comingsoon, null);
             Toast.makeText(getActivity().getApplicationContext(), "Network error. Check your network connections to download the file.", Toast.LENGTH_SHORT).show();
             return rootView;
         }
+        return rootView;
     }
 }
