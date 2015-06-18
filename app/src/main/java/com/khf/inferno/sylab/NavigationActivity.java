@@ -36,6 +36,9 @@ public class NavigationActivity extends FragmentActivity {
     private static final String ARG_PARAM1 = "fileName";
     private static final String ARG_PARAM2 = "url";
 
+    private Typeface bold;
+    private Typeface normal;
+
     ExpandableListView expListView;
     ExpandableListAdapter listAdapter;
 
@@ -61,13 +64,13 @@ public class NavigationActivity extends FragmentActivity {
         home = (ImageView)findViewById(R.id.home);
         home.setOnClickListener(homeOnclickListener);
 
+        bold = Typeface.createFromAsset(this.getAssets(), "fonts/RobotoCondensed-Bold.ttf");
+        normal = Typeface.createFromAsset(this.getAssets(), "fonts/RobotoCondensed-Regular.ttf");
+
         appName = (TextView)findViewById(R.id.appname);
-        openButton = (Button) findViewById(R.id.open_btn);
-
-        Typeface bold = Typeface.createFromAsset(this.getAssets(), "fonts/RobotoCondensed-Bold.ttf");
-        Typeface normal = Typeface.createFromAsset(this.getAssets(), "fonts/RobotoCondensed-Regular.ttf");
-
         appName.setTypeface(bold);
+
+        openButton = (Button) findViewById(R.id.open_btn);
         openButton.setTypeface(normal);
 
         setupDrawer();
@@ -96,19 +99,14 @@ public class NavigationActivity extends FragmentActivity {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
 
-                if(groupPosition == 7 && childPosition == 0) {
-                    fragment = new About();
-                    getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fragment).commit();
-                    mDrawerLayout.closeDrawer(expListView);
-                    return false;
+                if(groupPosition == 7 && childPosition == 0) fragment = new About();
+                else {
+                    fragment = new DisplayFragment();
+                    Bundle args = new Bundle();
+                    args.putString(ARG_PARAM1, subjectNames[groupPosition * 10 + childPosition]);
+                    args.putString(ARG_PARAM2, baseUrl + subjectNames[groupPosition * 10 + childPosition] + ".pdf");
+                    fragment.setArguments(args);
                 }
-
-                fragment = new DisplayFragment();
-                Bundle args = new Bundle();
-                args.putString(ARG_PARAM1, subjectNames[groupPosition * 10 + childPosition]);
-                args.putString(ARG_PARAM2, baseUrl + subjectNames[groupPosition * 10 + childPosition] + ".pdf");
-                fragment.setArguments(args);
-
                 getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fragment).commit();
                 mDrawerLayout.closeDrawer(expListView);
                 return false;
@@ -120,16 +118,12 @@ public class NavigationActivity extends FragmentActivity {
     View.OnClickListener homeOnclickListener = new OnClickListener() {
         @Override
         public void onClick(View v) {
-            if(mDrawerLayout.isDrawerOpen(expListView)){
-                mDrawerLayout.closeDrawer(expListView);
-            }else{
-                mDrawerLayout.openDrawer(expListView);
-            }
+            if(mDrawerLayout.isDrawerOpen(expListView)) mDrawerLayout.closeDrawer(expListView);
+            else mDrawerLayout.openDrawer(expListView);
         }
     };
 
-    // Catch the events related to the drawer to arrange views according to this
-    // action if necessary...
+    // Catch the events related to the drawer to arrange views according to this action if necessary...
     private DrawerListener mDrawerListener = new DrawerListener() {
 
         @Override
@@ -181,7 +175,7 @@ public class NavigationActivity extends FragmentActivity {
         List<String> s2 = new ArrayList<>();
         s2.add("Technical English 2");
         s2.add("Mathematics 2");
-        s2.add("principles of Computer Engineering");
+        s2.add("Principles of Computer Engineering");
         s2.add("Physics for Information Science");
         s2.add("Programming using C++");
         s2.add("Digital Principles and System Design");
@@ -203,11 +197,11 @@ public class NavigationActivity extends FragmentActivity {
         s4.add("Electrical Engineering and Control Systems");
         s4.add("Design and Analysis of Algorithms");
         s4.add("Operating Systems");
-        s4.add("Java and Internet Programing");
+        s4.add("Java and Internet Programming");
         s4.add("Probability and Queuing Theory");
         s4.add("Software Engineering");
         s4.add("Operating Systems Lab");
-        s4.add("Java and Internet Programing Lab");
+        s4.add("Java and Internet Programming Lab");
 
         List<String> s5 = new ArrayList<>();
         s5.add("Object oriented Analysis and Design");
@@ -233,7 +227,7 @@ public class NavigationActivity extends FragmentActivity {
         s7.add("Mobile and Persuasive Computing");
         s7.add("Security in Computing");
         s7.add("Principles Of Management");
-        s7.add("Parallel Programing");
+        s7.add("Parallel Programming");
         s7.add("Software Development Laboratory");
         s7.add("Mobile Application Development Laboratory");
 
@@ -257,8 +251,7 @@ public class NavigationActivity extends FragmentActivity {
         // child data in format of header title, child title
         private HashMap<String, List<String>> _listDataChild;
 
-        public ExpandableListAdapter(Context context, List<String> listDataHeader,
-                                     HashMap<String, List<String>> listChildData) {
+        public ExpandableListAdapter(Context context, List<String> listDataHeader, HashMap<String, List<String>> listChildData) {
             this._context = context;
             this._listDataHeader = listDataHeader;
             this._listDataChild = listChildData;
@@ -276,28 +269,24 @@ public class NavigationActivity extends FragmentActivity {
         }
 
         @Override
-        public View getChildView(int groupPosition, final int childPosition,
-                                 boolean isLastChild, View convertView, ViewGroup parent) {
+        public View getChildView(int groupPosition, final int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
 
             final String childText = (String) getChild(groupPosition, childPosition);
 
             if (convertView == null) {
-                LayoutInflater inflater = (LayoutInflater) this._context
-                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                LayoutInflater inflater = (LayoutInflater) this._context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 convertView = inflater.inflate(R.layout.list_item, null);
             }
 
-            TextView txtListChild = (TextView) convertView
-                    .findViewById(R.id.lblListItem);
-
+            TextView txtListChild = (TextView) convertView.findViewById(R.id.lblListItem);
+            txtListChild.setTypeface(normal);
             txtListChild.setText(childText);
             return convertView;
         }
 
         @Override
         public int getChildrenCount(int groupPosition) {
-            return this._listDataChild.get(this._listDataHeader.get(groupPosition))
-                    .size();
+            return this._listDataChild.get(this._listDataHeader.get(groupPosition)).size();
         }
 
         @Override
@@ -316,17 +305,15 @@ public class NavigationActivity extends FragmentActivity {
         }
 
         @Override
-        public View getGroupView(int groupPosition, boolean isExpanded,
-                                 View convertView, ViewGroup parent) {
+        public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
             String headerTitle = (String) getGroup(groupPosition);
             if (convertView == null) {
-                LayoutInflater inflater = (LayoutInflater) this._context
-                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                LayoutInflater inflater = (LayoutInflater) this._context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 convertView = inflater.inflate(R.layout.list_group, null);
             }
 
             TextView lblListHeader = (TextView) convertView.findViewById(R.id.lblListHeader);
-            lblListHeader.setTypeface(null, Typeface.BOLD);
+            lblListHeader.setTypeface(bold);
             lblListHeader.setText(headerTitle);
 
             return convertView;
