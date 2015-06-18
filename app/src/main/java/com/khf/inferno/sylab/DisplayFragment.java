@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.doepiccoding.navigationdrawer.R;
 import com.joanzapata.pdfview.PDFView;
 
 import java.io.File;

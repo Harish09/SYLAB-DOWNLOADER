@@ -22,8 +22,6 @@ import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.doepiccoding.navigationdrawer.R;
-
 public class NavigationActivity extends FragmentActivity {
 
     private DrawerLayout mDrawerLayout;
@@ -32,7 +30,7 @@ public class NavigationActivity extends FragmentActivity {
 
     Fragment fragment = null;
 
-    TextView appname;
+    TextView appName;
     Button openButton;
 
     private static final String ARG_PARAM1 = "fileName";
@@ -58,30 +56,25 @@ public class NavigationActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String fontPath = "fonts/RobotoCondensed-Bold.ttf";
-        String newFontPath = "fonts/RobotoCondensed-Regular.ttf";
         setContentView(R.layout.activity_navigation);
-
-        if(getActionBar() != null)
-            getActionBar().setDisplayHomeAsUpEnabled(true);
 
         home = (ImageView)findViewById(R.id.home);
         home.setOnClickListener(homeOnclickListener);
 
-        appname = (TextView)findViewById(R.id.appname);
+        appName = (TextView)findViewById(R.id.appname);
         openButton = (Button) findViewById(R.id.open_btn);
 
-        Typeface tf = Typeface.createFromAsset(this.getAssets(), fontPath);
-        Typeface tf1 = Typeface.createFromAsset(this.getAssets(), newFontPath);
+        Typeface bold = Typeface.createFromAsset(this.getAssets(), "fonts/RobotoCondensed-Bold.ttf");
+        Typeface normal = Typeface.createFromAsset(this.getAssets(), "fonts/RobotoCondensed-Regular.ttf");
 
-        appname.setTypeface(tf);
-        openButton.setTypeface(tf1);
+        appName.setTypeface(bold);
+        openButton.setTypeface(normal);
 
-        setUpDrawer();
+        setupDrawer();
     }
 
     //Get the names and icons references to build the drawer menu...
-    private void setUpDrawer() {
+    private void setupDrawer() {
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerLayout.setScrimColor(getResources().getColor(android.R.color.transparent));
@@ -212,7 +205,7 @@ public class NavigationActivity extends FragmentActivity {
         s4.add("Operating Systems");
         s4.add("Java and Internet Programing");
         s4.add("Probability and Queuing Theory");
-        s4.add("Sofware Engineering");
+        s4.add("Software Engineering");
         s4.add("Operating Systems Lab");
         s4.add("Java and Internet Programing Lab");
 
@@ -289,9 +282,9 @@ public class NavigationActivity extends FragmentActivity {
             final String childText = (String) getChild(groupPosition, childPosition);
 
             if (convertView == null) {
-                LayoutInflater infalInflater = (LayoutInflater) this._context
+                LayoutInflater inflater = (LayoutInflater) this._context
                         .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                convertView = infalInflater.inflate(R.layout.list_item, null);
+                convertView = inflater.inflate(R.layout.list_item, null);
             }
 
             TextView txtListChild = (TextView) convertView
@@ -327,9 +320,9 @@ public class NavigationActivity extends FragmentActivity {
                                  View convertView, ViewGroup parent) {
             String headerTitle = (String) getGroup(groupPosition);
             if (convertView == null) {
-                LayoutInflater infalInflater = (LayoutInflater) this._context
+                LayoutInflater inflater = (LayoutInflater) this._context
                         .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                convertView = infalInflater.inflate(R.layout.list_group, null);
+                convertView = inflater.inflate(R.layout.list_group, null);
             }
 
             TextView lblListHeader = (TextView) convertView.findViewById(R.id.lblListHeader);
