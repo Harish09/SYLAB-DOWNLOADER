@@ -30,6 +30,8 @@ public class FileDownloader {
 
     private String dirName = "/file_downloader/";
 
+    public boolean canFileBeDownloaded = true;
+
     public String getFileExtension() {
         return fileExtension;
     }
@@ -108,7 +110,7 @@ public class FileDownloader {
 
         DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
         request.setDescription("Required component of the application");
-        request.setTitle("Syllabus.pdf");
+        request.setTitle(fileName + ".pdf");
 
         // in order for this if to run, you must use the android 3.2 to compile your app
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
@@ -125,7 +127,20 @@ public class FileDownloader {
 
     public boolean isValidDownload(long downloadID ) {
 
-        Cursor c = manager.query(new DownloadManager.Query().setFilterById(downloadID));
-        return c.moveToFirst() && c.getInt(c.getColumnIndex(DownloadManager.COLUMN_STATUS)) == DownloadManager.STATUS_SUCCESSFUL;
+        if(downloadID == 0) return false;
+        try {
+            Cursor c = manager.query(new DownloadManager.Query().setFilterById(downloadID));
+            if ((c.moveToFirst() && (c.getInt(c.getColumnIndex(DownloadManager.COLUMN_STATUS)) == DownloadManager.STATUS_FAILED)) || (c.getInt(c.getColumnIndex(DownloadManager.COLUMN_STATUS)) == DownloadManager.STATUS_RUNNING)) {
+                canFileBeDownloaded = false;
+                return true;
+            }
+            else{
+                canFileBeDownloaded = true;
+                return false;
+            }
+        } catch(Exception e) {
+            canFileBeDownloaded = false;
+            return false;
+        }
     }
 }

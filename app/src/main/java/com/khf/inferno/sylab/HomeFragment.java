@@ -8,8 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.doepiccoding.navigationdrawer.R;
-
 public class HomeFragment extends Fragment{
 	
 	@Override

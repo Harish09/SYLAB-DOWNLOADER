@@ -22,8 +22,6 @@ import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.doepiccoding.navigationdrawer.R;
-
 public class NavigationActivity extends FragmentActivity {
 
     private DrawerLayout mDrawerLayout;
@@ -32,7 +30,7 @@ public class NavigationActivity extends FragmentActivity {
 
     Fragment fragment = null;
 
-    TextView appname;
+    TextView appName;
     Button openButton;
 
     private static final String ARG_PARAM1 = "fileName";
@@ -43,9 +41,9 @@ public class NavigationActivity extends FragmentActivity {
 
     private String[] subjectNames = {
             "TE1", "M1", "EP", "EC", "EG", "CT", "PL", "CL", "EPL", "CP-Lab",
-            "TE2", "M2", "CP", "PCE", "PC++", "DPSD", "PRG-Lab", "DIGITAL-Lab", "PAD", "PAD",
+            "TE2", "M2", "PCE", "CP", "PC++", "DPSD", "PRG-Lab", "DIGITAL-Lab", "PAD", "PAD",
             "ANT", "EDC", "DS", "DBMS", "EVS", "CA", "DBMS-Lab", "DS-Lab", "PAD", "PAD",
-            "EECS", "DAA", "OS", "JIP", "PQT", "SE", "JIP-Lab", "PAD", "PAD", "PAD",
+            "EECS", "DAA", "OS", "JIP", "PQT", "SE", "OS-Lab", "JIP-Lab", "PAD", "PAD",
             "OOAD", "TOC", "SSI", "MP", "DCCN", "TW", "CN-Lab", "CT-Lab", "MP-Lab", "PAD",
             "AI", "DSP", "CG", "CD", "PP", "CG-Lab", "PAD", "PAD", "PAD", "PAD",
             "MPC", "SIC", "POM", "PARALLEL", "SD-Lab", "MAD-Lab", "PAD", "PAD", "PAD", "PAD"
@@ -58,30 +56,25 @@ public class NavigationActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String fontPath = "fonts/RobotoCondensed-Bold.ttf";
-        String newFontPath = "fonts/RobotoCondensed-Regular.ttf";
         setContentView(R.layout.activity_navigation);
-
-        if(getActionBar() != null)
-            getActionBar().setDisplayHomeAsUpEnabled(true);
 
         home = (ImageView)findViewById(R.id.home);
         home.setOnClickListener(homeOnclickListener);
 
-        appname = (TextView)findViewById(R.id.appname);
+        appName = (TextView)findViewById(R.id.appname);
         openButton = (Button) findViewById(R.id.open_btn);
 
-        Typeface tf = Typeface.createFromAsset(this.getAssets(), fontPath);
-        Typeface tf1 = Typeface.createFromAsset(this.getAssets(), newFontPath);
+        Typeface bold = Typeface.createFromAsset(this.getAssets(), "fonts/RobotoCondensed-Bold.ttf");
+        Typeface normal = Typeface.createFromAsset(this.getAssets(), "fonts/RobotoCondensed-Regular.ttf");
 
-        appname.setTypeface(tf);
-        openButton.setTypeface(tf1);
+        appName.setTypeface(bold);
+        openButton.setTypeface(normal);
 
-        setUpDrawer();
+        setupDrawer();
     }
 
     //Get the names and icons references to build the drawer menu...
-    private void setUpDrawer() {
+    private void setupDrawer() {
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerLayout.setScrimColor(getResources().getColor(android.R.color.transparent));
@@ -182,7 +175,7 @@ public class NavigationActivity extends FragmentActivity {
         s1.add("Computing Techniques");
         s1.add("Physics Lab");
         s1.add("Chemistry Lab");
-        s1.add("Engineering Practise Lab");
+        s1.add("Engineering Practices Lab");
         s1.add("Computing Techniques Lab");
 
         List<String> s2 = new ArrayList<>();
@@ -190,9 +183,9 @@ public class NavigationActivity extends FragmentActivity {
         s2.add("Mathematics 2");
         s2.add("principles of Computer Engineering");
         s2.add("Physics for Information Science");
-        s2.add("Programing using C++");
+        s2.add("Programming using C++");
         s2.add("Digital Principles and System Design");
-        s2.add("Programing Laboratory");
+        s2.add("Programming Laboratory");
         s2.add("Digital Laboratory");
 
 
@@ -212,7 +205,7 @@ public class NavigationActivity extends FragmentActivity {
         s4.add("Operating Systems");
         s4.add("Java and Internet Programing");
         s4.add("Probability and Queuing Theory");
-        s4.add("Sofware Engineering");
+        s4.add("Software Engineering");
         s4.add("Operating Systems Lab");
         s4.add("Java and Internet Programing Lab");
 
@@ -243,7 +236,6 @@ public class NavigationActivity extends FragmentActivity {
         s7.add("Parallel Programing");
         s7.add("Software Development Laboratory");
         s7.add("Mobile Application Development Laboratory");
-
 
         List<String> s8 = new ArrayList<>();
         s8.add("About");
@@ -290,9 +282,9 @@ public class NavigationActivity extends FragmentActivity {
             final String childText = (String) getChild(groupPosition, childPosition);
 
             if (convertView == null) {
-                LayoutInflater infalInflater = (LayoutInflater) this._context
+                LayoutInflater inflater = (LayoutInflater) this._context
                         .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                convertView = infalInflater.inflate(R.layout.list_item, null);
+                convertView = inflater.inflate(R.layout.list_item, null);
             }
 
             TextView txtListChild = (TextView) convertView
@@ -328,9 +320,9 @@ public class NavigationActivity extends FragmentActivity {
                                  View convertView, ViewGroup parent) {
             String headerTitle = (String) getGroup(groupPosition);
             if (convertView == null) {
-                LayoutInflater infalInflater = (LayoutInflater) this._context
+                LayoutInflater inflater = (LayoutInflater) this._context
                         .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                convertView = infalInflater.inflate(R.layout.list_group, null);
+                convertView = inflater.inflate(R.layout.list_group, null);
             }
 
             TextView lblListHeader = (TextView) convertView.findViewById(R.id.lblListHeader);

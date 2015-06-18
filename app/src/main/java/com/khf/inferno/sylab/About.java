@@ -1,112 +1,166 @@
 package com.khf.inferno.sylab;
 
+import android.content.Context;
+import android.graphics.Point;
+import android.graphics.Rect;
 import android.support.v4.app.Fragment;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
-import com.doepiccoding.navigationdrawer.R;
+import java.util.ArrayList;
 
 
 public class About extends Fragment {
 
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
+    private Intent intent;
 
-                View rootView;
-                rootView = inflater.inflate(R.layout.activity_about, null);
+    public void makeList(ListView lV) {
+        Point p = new Point();
+        WindowManager windowManager = getActivity().getWindowManager();
+        Display dP = windowManager.getDefaultDisplay();
+        dP.getSize(p);
+        final ArrayList<String> arrayList = new ArrayList<>();
+        arrayList.add(Integer.toString(p.x));
+        arrayList.add("Section");
+        arrayList.add("Item");
+        arrayList.add("Item");
+        arrayList.add("Item");
+        arrayList.add("Section");
+        arrayList.add("Item");
+        arrayList.add("Item");
 
-//                setContentView(R.layout.activity_about);
-                Typeface tf = Typeface.createFromAsset(getActivity().getAssets(),
-                        "fonts/RobotoCondensed-Bold.ttf");
-                TextView tv = (TextView) rootView.findViewById(R.id.textView2);
-                tv.setTypeface(tf);
-                TextView tv1 = (TextView) rootView.findViewById(R.id.textView3);
-                tv1.setTypeface(tf);
-                TextView tv9 = (TextView) rootView.findViewById(R.id.textView10);
-                tv9.setTypeface(tf);
-                Typeface tf1 = Typeface.createFromAsset(getActivity().getAssets(),
-                        "fonts/RobotoCondensed-Regular.ttf");
-                TextView tv2 = (TextView) rootView.findViewById(R.id.textView4);
-                tv2.setTypeface(tf1);
-                TextView tv3 = (TextView) rootView.findViewById(R.id.textView5);
-                tv3.setTypeface(tf1);
-                TextView tv4 = (TextView) rootView.findViewById(R.id.textView6);
-                tv4.setTypeface(tf1);
-                TextView tv8 = (TextView) rootView.findViewById(R.id.textView);
-                tv8.setTypeface(tf1);
-                TextView tv10 = (TextView) rootView.findViewById(R.id.textView11);
-                tv10.setTypeface(tf1);
-                Typeface tf2 = Typeface.createFromAsset(getActivity().getAssets(),
-                        "fonts/RobotoCondensed-Italic.ttf");
-                TextView tv5 = (TextView) rootView.findViewById(R.id.textView7);
-                tv5.setTypeface(tf2);
-                TextView tv6 = (TextView) rootView.findViewById(R.id.textView8);
-                tv6.setTypeface(tf2);
-                TextView tv7 = (TextView) rootView.findViewById(R.id.textView9);
-                tv7.setTypeface(tf2);
-                TextView tv11 = (TextView) rootView.findViewById(R.id.textView12);
-                tv11.setTypeface(tf2);
-                TextView tv12 = (TextView) rootView.findViewById(R.id.textView13);
-                tv12.setTypeface(tf2);
-                ImageView img_git = (ImageView)rootView.findViewById(R.id.imageButton);
-                img_git.setOnClickListener(new View.OnClickListener() {
-                        public void onClick(View v) {
-                                Intent intent = new Intent();
-                                intent.setAction(Intent.ACTION_VIEW);
-                                intent.addCategory(Intent.CATEGORY_BROWSABLE);
-                                intent.setData(Uri.parse("https://github.com/faizaanceg/SYLAB-DOWNLOADER"));
-                                startActivity(intent);
-                        }
-                });
-                ImageView img = (ImageView)rootView.findViewById(R.id.imageButton1);
-                img.setOnClickListener(new View.OnClickListener() {
-                        public void onClick(View v) {
-                                Intent intent = new Intent();
-                                intent.setAction(Intent.ACTION_VIEW);
-                                intent.addCategory(Intent.CATEGORY_BROWSABLE);
-                                intent.setData(Uri.parse("https://www.facebook.com/faizaan.ceg"));
-                                startActivity(intent);
-                        }
-                });
-                ImageView img1 = (ImageView)rootView.findViewById(R.id.imageButton2);
-                img1.setOnClickListener(new View.OnClickListener(){
-                        public void onClick(View v){
-                                Intent intent = new Intent();
-                                intent.setAction(Intent.ACTION_VIEW);
-                                intent.addCategory(Intent.CATEGORY_BROWSABLE);
-                                intent.setData(Uri.parse("https://www.facebook.com/harish.thecooldude"));
-                                startActivity(intent);
-                        }
-                });
-                ImageView img2 = (ImageView)rootView.findViewById(R.id.imageButton3);
-                img2.setOnClickListener(new View.OnClickListener(){
-                        public void onClick(View v){
-                                Intent intent = new Intent();
-                                intent.setAction(Intent.ACTION_VIEW);
-                                intent.addCategory(Intent.CATEGORY_BROWSABLE);
-                                intent.setData(Uri.parse("https://www.facebook.com/karthick.ramjee"));
-                                startActivity(intent);
-                        }
-                });
-                ImageView img3 = (ImageView)rootView.findViewById(R.id.imageView);
-                img3.setOnClickListener(new View.OnClickListener(){
-                        public void onClick(View v){
-                                Intent intent = new Intent();
-                                intent.setAction(Intent.ACTION_VIEW);
-                                intent.addCategory(Intent.CATEGORY_BROWSABLE);
-                                intent.setData(Uri.parse("https://github.com/JoanZapata/android-pdfview/blob/master/LICENSE.txt"));
-                                startActivity(intent);
-                        }
-                });
+        intent = new Intent();
+        intent.setAction(Intent.ACTION_VIEW);
+        intent.addCategory(Intent.CATEGORY_BROWSABLE);
 
-                return rootView;
+        final MyAdapter arrayAdapter = new MyAdapter(getActivity().getApplicationContext(), arrayList);
+        lV.setAdapter(arrayAdapter);
+        lV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                switch (position) {
+                    case 0:
+                        intent.setData(Uri.parse("https://github.com/faizaanceg/SYLAB-DOWNLOADER"));
+                        break;
+                    case 2:
+                        intent.setData(Uri.parse("https://www.facebook.com/faizaan.ceg"));
+                        break;
+                    case 3:
+                        intent.setData(Uri.parse("https://www.facebook.com/harish.thecooldude"));
+                        break;
+                    case 4:
+                        intent.setData(Uri.parse("https://www.facebook.com/karthick.ramjee"));
+                        break;
+                    case 6:
+                        intent.setData(Uri.parse("https://github.com/JoanZapata/android-pdfview/blob/master/LICENSE.txt"));
+                        break;
+                    case 7:
+                        intent.setData(Uri.parse("https://github.com/google/roboto/blob/master/LICENSE"));
+                        break;
+                    default:
+                        return;
+                }
+                startActivity(intent);
+            }
+        });
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+        View rootView = inflater.inflate(R.layout.about, null);
+
+        ListView listView = (ListView) rootView.findViewById(R.id.aboutView);
+        makeList(listView);
+
+        return rootView;
+
+    }
+}
+
+class MyAdapter extends ArrayAdapter<String> {
+
+    private Context context;
+    private ArrayList<String> values;
+    private Typeface italic;
+    private Typeface bold;
+    private Typeface normal;
+
+    private int[] headings = {R.string.code, R.string.developer, R.string.aulisius, R.string.ranguski, R.string.mac, R.string.license, R.string.pdfView, R.string.roboto};
+    private int[] alias = {R.string.version, -1, R.string.alias_faizaan, R.string.alias_harish, R.string.alias_karthi, -1, -1, -1};
+    private int[] images = {R.drawable.fb, R.drawable.github};
+
+    MyAdapter(Context context, ArrayList<String> values) {
+        super(context, R.layout.list_about, values);
+        this.context = context;
+        this.values = values;
+        bold = Typeface.createFromAsset(context.getAssets(), "fonts/RobotoCondensed-Bold.ttf");
+        italic = Typeface.createFromAsset(context.getAssets(),"fonts/RobotoCondensed-Italic.ttf");
+        normal = Typeface.createFromAsset(context.getAssets(), "fonts/RobotoCondensed-Regular.ttf");
+    }
+
+    @Override
+    public View getView(int position, View v, ViewGroup root) {
+
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
+
+        if(position == 1 || position == 5){
+
+            View rowView = inflater.inflate(R.layout.list_about_section, root, false);
+
+            TextView textName = (TextView) rowView.findViewById(R.id.name);
+            textName.setText(headings[position]);
+            textName.setTypeface(bold);
+            textName.setFocusable(false);
+            textName.setClickable(false);
+
+            Rect bounds = new Rect();
+            textName.getPaint().getTextBounds(textName.getText().toString(), 0, textName.getText().length(), bounds);
+            int textWidth = bounds.width();
+            int widthScreen = Integer.parseInt(values.get(0));
+            int paddingLR = widthScreen - textWidth;
+
+            textName.setPadding(paddingLR/2, 5, 0, 5);
+
+            return rowView;
         }
+
+        View rowView = inflater.inflate(R.layout.list_about, root, false);
+
+        TextView textName = (TextView) rowView.findViewById(R.id.name);
+        textName.setText(headings[position]);
+        textName.setTypeface(normal);
+
+        TextView textAlias = (TextView) rowView.findViewById(R.id.alias);
+        switch (position) {
+            case 6:
+            case 7:
+                textName.setPadding(0, 20, 0, 0);
+                textAlias.setText("");
+                break;
+            default:
+                textAlias.setText(alias[position]);
+                textAlias.setTypeface(italic);
+                break;
+        }
+
+        ImageView imageView = (ImageView) rowView.findViewById(R.id.photo);
+        imageView.setImageResource(position == 0 || position == 6 || position == 7 ? images[1] : images[0]);
+
+        return rowView;
+
+    }
 }
