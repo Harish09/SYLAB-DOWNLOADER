@@ -62,7 +62,7 @@ public class DisplayFragment extends Fragment {
         openBtn = (Button) getActivity().findViewById(R.id.open_btn);
         refBtn = (Button) getActivity().findViewById(R.id.refresh_btn);
 
-        fileDownloader = new FileDownloader();
+        fileDownloader = new FileDownloader(); 
         if (!fileDownloader.isFilePresent("/sylab/" + myFileName + ".pdf")) openBtn.setVisibility(View.INVISIBLE);
 
         openBtn.setOnClickListener(new View.OnClickListener() {
