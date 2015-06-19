@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -86,6 +87,9 @@ public class About extends Fragment {
         ListView listView = (ListView) rootView.findViewById(R.id.aboutView);
         makeList(listView);
 
+        View topView = inflater.inflate(R.layout.activity_navigation, null);
+        Button open = (Button) topView.findViewById(R.id.open_btn);
+        open.setVisibility(View.INVISIBLE);
         return rootView;
 
     }

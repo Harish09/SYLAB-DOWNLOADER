@@ -26,7 +26,6 @@ public class NavigationActivity extends FragmentActivity {
 
     private DrawerLayout mDrawerLayout;
 
-
     private Fragment fragment = null;
 
     private static final String ARG_PARAM1 = "fileName";
@@ -47,6 +46,8 @@ public class NavigationActivity extends FragmentActivity {
             "AI", "DSP", "CG", "CD", "PP", "CG-Lab", "PAD", "PAD", "PAD", "PAD",
             "MPC", "SIC", "POM", "PARALLEL", "SD-Lab", "MAD-Lab", "PAD", "PAD", "PAD", "PAD"
     };
+    private String[] missing = { "TE1", "EP", "EC", "EG", "PL", "CL", "EPL", "TE2"};
+    private ArrayList<String> missingSubjects;
     private String baseUrl = "http://cs.annauniv.edu/academic/ug2012/";
 
     List<String> listDataHeader;
@@ -56,6 +57,16 @@ public class NavigationActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
+
+        missingSubjects = new ArrayList<String>();
+        missingSubjects.add(0, missing[0]);
+        missingSubjects.add(1, missing[1]);
+        missingSubjects.add(2, missing[2]);
+        missingSubjects.add(3, missing[3]);
+        missingSubjects.add(4, missing[4]);
+        missingSubjects.add(5, missing[5]);
+        missingSubjects.add(6, missing[6]);
+        missingSubjects.add(7, missing[7]);
 
         ImageView home = (ImageView) findViewById(R.id.home);
         home.setOnClickListener(homeOnclickListener);
@@ -95,18 +106,19 @@ public class NavigationActivity extends FragmentActivity {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
 
+                int index = groupPosition * 10 + childPosition;
                 if(groupPosition == 7 && childPosition == 0) fragment = new About();
+                else if (missingSubjects.contains(subjectNames[index])) fragment = new DisplayFragment();
                 else {
                     fragment = new DisplayFragment();
                     Bundle args = new Bundle();
-                    args.putString(ARG_PARAM1, subjectNames[groupPosition * 10 + childPosition]);
-                    args.putString(ARG_PARAM2, baseUrl + subjectNames[groupPosition * 10 + childPosition] + ".pdf");
+                    args.putString(ARG_PARAM1, subjectNames[index]);
+                    args.putString(ARG_PARAM2, baseUrl + subjectNames[index] + ".pdf");
                     fragment.setArguments(args);
                 }
                 getSupportFragmentManager().beginTransaction().addToBackStack(fragment.toString()).replace(R.id.content_frame, fragment).commit();
                 mDrawerLayout.closeDrawer(expListView);
                 return false;
-
             }
         });
     }
@@ -177,7 +189,6 @@ public class NavigationActivity extends FragmentActivity {
         s2.add("Digital Principles and System Design");
         s2.add("Programming Laboratory");
         s2.add("Digital Laboratory");
-
 
         List<String> s3 = new ArrayList<>();
         s3.add("Algebra and Number Theory");
