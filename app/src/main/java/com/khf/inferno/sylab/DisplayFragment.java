@@ -29,6 +29,7 @@ public class DisplayFragment extends Fragment {
     private String url;
 
     private FileDownloader fileDownloader = null;
+    
     private File file = null;
 
     //private static long ID = 0;
