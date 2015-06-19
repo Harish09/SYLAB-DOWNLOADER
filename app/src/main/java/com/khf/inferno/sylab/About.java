@@ -115,7 +115,7 @@ class MyAdapter extends ArrayAdapter<String> {
     @Override
     public View getView(int position, View v, ViewGroup root) {
 
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         if(position == 1 || position == 5){
 

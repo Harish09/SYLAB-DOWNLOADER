@@ -26,12 +26,8 @@ public class NavigationActivity extends FragmentActivity {
 
     private DrawerLayout mDrawerLayout;
 
-    ImageView home;
 
-    Fragment fragment = null;
-
-    TextView appName;
-    Button openButton;
+    private Fragment fragment = null;
 
     private static final String ARG_PARAM1 = "fileName";
     private static final String ARG_PARAM2 = "url";
@@ -61,16 +57,16 @@ public class NavigationActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
 
-        home = (ImageView)findViewById(R.id.home);
+        ImageView home = (ImageView) findViewById(R.id.home);
         home.setOnClickListener(homeOnclickListener);
 
         bold = Typeface.createFromAsset(this.getAssets(), "fonts/RobotoCondensed-Bold.ttf");
         normal = Typeface.createFromAsset(this.getAssets(), "fonts/RobotoCondensed-Regular.ttf");
 
-        appName = (TextView)findViewById(R.id.appname);
+        TextView appName = (TextView) findViewById(R.id.appname);
         appName.setTypeface(bold);
 
-        openButton = (Button) findViewById(R.id.open_btn);
+        Button openButton = (Button) findViewById(R.id.open_btn);
         openButton.setTypeface(normal);
 
         setupDrawer();
@@ -107,7 +103,7 @@ public class NavigationActivity extends FragmentActivity {
                     args.putString(ARG_PARAM2, baseUrl + subjectNames[groupPosition * 10 + childPosition] + ".pdf");
                     fragment.setArguments(args);
                 }
-                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fragment).commit();
+                getSupportFragmentManager().beginTransaction().addToBackStack(fragment.toString()).replace(R.id.content_frame, fragment).commit();
                 mDrawerLayout.closeDrawer(expListView);
                 return false;
 
