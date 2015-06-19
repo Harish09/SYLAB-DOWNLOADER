@@ -2,20 +2,6 @@
 <items version="2" >
 
     <item
-        jar="C:\SYLAB\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\jars\libs\internal_impl-22.2.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
-        <dex dex="C:\SYLAB\app\build\intermediates\pre-dexed\debug\internal_impl-22.2.0-ae927611c6936d948fc976033f528a4c4444d54d.jar" />
-    </item>
-    <item
-        jar="C:\SYLAB\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\jars\classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
-        <dex dex="C:\SYLAB\app\build\intermediates\pre-dexed\debug\classes-411bb3b2c0ec9787b7f33ae54a0c8a08a85dbe94.jar" />
-    </item>
-    <item
         jar="C:\SYLAB\app\build\intermediates\exploded-aar\com.joanzapata.pdfview\android-pdfview\1.0.3\jars\classes.jar"
         jumboMode="false"
         revision="22.0.1"
@@ -28,6 +14,20 @@
         revision="22.0.1"
         sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
         <dex dex="C:\SYLAB\app\build\intermediates\pre-dexed\debug\support-annotations-22.2.0-b396a57a3ca346fa593234bb8cadda827f26a537.jar" />
+    </item>
+    <item
+        jar="C:\SYLAB\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\jars\libs\internal_impl-22.2.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
+        <dex dex="C:\SYLAB\app\build\intermediates\pre-dexed\debug\internal_impl-22.2.0-ae927611c6936d948fc976033f528a4c4444d54d.jar" />
+    </item>
+    <item
+        jar="C:\SYLAB\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
+        <dex dex="C:\SYLAB\app\build\intermediates\pre-dexed\debug\classes-411bb3b2c0ec9787b7f33ae54a0c8a08a85dbe94.jar" />
     </item>
 
 </items>
