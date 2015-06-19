@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.joanzapata.pdfview.PDFView;
@@ -131,6 +132,8 @@ public class DisplayFragment extends Fragment {
 
         if (fileDownloader.isReadyForDownload(this)) {
             rootView = inflater.inflate(R.layout.comingsoon, null);
+            TextView error = (TextView) rootView.findViewById(R.id.textView2);
+            error.setText("You haven't downloaded this file yet");
             fileDownloader.DownloadFile(getActivity().getApplicationContext(), url, "/sylab/", myFileName, ".pdf");
             Toast.makeText(getActivity().getApplicationContext(), "File is being downloaded. Refresh after a few moments to see changes.", Toast.LENGTH_SHORT).show();
             new Handler().postDelayed(new Runnable() {

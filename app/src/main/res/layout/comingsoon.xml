@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/error"
+        android:text="@string/error_when_no_file"
         android:id="@+id/textView2"
         android:paddingEnd="10dp"
         android:paddingStart="10dp"

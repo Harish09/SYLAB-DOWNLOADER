@@ -80,17 +80,14 @@ public class About extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         openBtn = (Button) getActivity().findViewById(R.id.open_btn);
         openBtn.setVisibility(View.INVISIBLE);
+
         View rootView = inflater.inflate(R.layout.about, null);
 
         ListView listView = (ListView) rootView.findViewById(R.id.aboutView);
         makeList(listView);
-
-
-
 
         return rootView;
 

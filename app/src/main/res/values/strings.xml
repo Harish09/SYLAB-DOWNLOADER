@@ -6,7 +6,8 @@
     <string name="title_activity_about">About</string>
     <string name="title_activity_splash">Splash</string>
 
-    <string name="error">Oops! Looks like we don\'t have that file yet. We will update it soon.</string>
+    <string name="error_when_no_file">Oops! Looks like we don\'t have that file yet. We will update it soon.</string>
+    <string name="error_when_no_net">You haven't downloaded this file yet.</string>
     <string name="code">Source Code</string>
     <string name="developer">Developers</string>
     <string name="license">License</string>
