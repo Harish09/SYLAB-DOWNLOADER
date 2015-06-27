@@ -1,6 +1,5 @@
 package com.khf.inferno.sylab;
 
-import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
@@ -33,8 +32,6 @@ public class DisplayFragment extends Fragment {
     
     private File file = null;
 
-    //private static long ID = 0;
-
     public static DisplayFragment newInstance(String url, String fileName) {
 
         DisplayFragment fragment = new DisplayFragment();
@@ -53,6 +50,7 @@ public class DisplayFragment extends Fragment {
     public void refreshFragment() {
         getFragmentManager().beginTransaction().replace(R.id.content_frame, this).detach(this).attach(this).commit();
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,9 +88,6 @@ public class DisplayFragment extends Fragment {
                 refreshFragment();
             }
         });
-
-
-
     }
 
     @Override
@@ -146,6 +141,8 @@ public class DisplayFragment extends Fragment {
         }
         if (!fileDownloader.isReadyForDownload(this)) {
             rootView = inflater.inflate(R.layout.comingsoon, null);
+            TextView error = (TextView) rootView.findViewById(R.id.textView2);
+            error.setText("You haven't downloaded this file yet");
             Toast.makeText(getActivity().getApplicationContext(), "Network error. Check your network connections to download the file.", Toast.LENGTH_SHORT).show();
             return rootView;
         }

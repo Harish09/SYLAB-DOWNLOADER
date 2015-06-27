@@ -32,7 +32,8 @@ public class About extends Fragment {
         WindowManager windowManager = getActivity().getWindowManager();
         Display dP = windowManager.getDefaultDisplay();
         dP.getSize(p);
-        final ArrayList<String> arrayList = new ArrayList<>();
+
+        ArrayList<String> arrayList = new ArrayList<>();
         arrayList.add(Integer.toString(p.x));
         arrayList.add("Section");
         arrayList.add("Item");

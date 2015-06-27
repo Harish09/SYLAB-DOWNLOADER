@@ -3,7 +3,6 @@ package com.khf.inferno.sylab;
 import android.app.Activity;
 import android.app.DownloadManager;
 import android.database.Cursor;
-import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -12,6 +11,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.support.annotation.Nullable;
+import android.support.annotation.NonNull;
 
 import java.io.File;
 
@@ -32,48 +32,33 @@ public class FileDownloader {
 
     public boolean canFileBeDownloaded = true;
 
-    public String getFileExtension() {
-        return fileExtension;
-    }
+    public String getFileExtension() { return fileExtension; }
 
     public void setFileExtension(String fileExtension) {
-        if(fileExtension != null)
-            this.fileExtension = fileExtension;
+        if(fileExtension != null) this.fileExtension = fileExtension;
     }
 
-    public String getFileName() {
-        return fileName;
-    }
+    public String getFileName() { return fileName; }
 
     public void setFileName(String fileName) {
-        if(fileName != null)
-            this.fileName = fileName;
+        if(fileName != null) this.fileName = fileName;
     }
 
-    public String getDirName() {
-        return dirName;
-    }
+    public String getDirName() { return dirName; }
 
     public void setDirName(String dirName) {
-        if(dirName != null)
-            this.dirName = dirName;
+        if(dirName != null) this.dirName = dirName;
     }
 
     public void setDeviceConnected(boolean deviceConnected) {
         this.deviceConnected = deviceConnected;
     }
 
-    public void setFileStatus(boolean fileStatus) {
-        this.fileStatus = fileStatus;
-    }
+    public void setFileStatus(boolean fileStatus) { this.fileStatus = fileStatus; }
 
-    public boolean getDeviceConnectedState() {
-        return deviceConnected;
-    }
+    public boolean getDeviceConnectedState() { return deviceConnected; }
 
-    public boolean getFileStatus() {
-        return fileStatus;
-    }
+    public boolean getFileStatus() { return fileStatus; }
 
     public boolean isReadyForDownload(@NonNull Object Parent) {
 
@@ -84,8 +69,7 @@ public class FileDownloader {
             connectivityManager = (ConnectivityManager) ((Activity)Parent).getSystemService(Context.CONNECTIVITY_SERVICE);
 
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
-        if (networkInfo != null && networkInfo.isConnected())
-            setDeviceConnected(true);
+        if (networkInfo != null && networkInfo.isConnected()) setDeviceConnected(true);
 
         return getDeviceConnectedState();
     }
@@ -133,8 +117,7 @@ public class FileDownloader {
             if ((c.moveToFirst() && (c.getInt(c.getColumnIndex(DownloadManager.COLUMN_STATUS)) == DownloadManager.STATUS_FAILED)) || (c.getInt(c.getColumnIndex(DownloadManager.COLUMN_STATUS)) == DownloadManager.STATUS_RUNNING)) {
                 canFileBeDownloaded = false;
                 return true;
-            }
-            else{
+            } else{
                 canFileBeDownloaded = true;
                 return false;
             }
