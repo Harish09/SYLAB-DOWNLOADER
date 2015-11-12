@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.arm.ceg.sylab.test">
+    package="com.khf.inferno.sylab.test">
 
     <uses-sdk android:minSdkVersion="14" android:targetSdkVersion="22" />
 
@@ -9,8 +9,8 @@
     </application>
 
     <instrumentation android:name="android.test.InstrumentationTestRunner"
-                     android:targetPackage="com.arm.ceg.sylab"
+                     android:targetPackage="com.khf.inferno.sylab"
                      android:handleProfiling="false"
                      android:functionalTest="false"
-                     android:label="Tests for com.arm.ceg.sylab"/>
+                     android:label="Tests for com.khf.inferno.sylab"/>
 </manifest>

@@ -7,10 +7,11 @@
 
     <ImageView
         android:id="@+id/imageView3"
+        android:contentDescription="CEG Logo"
         android:src="@drawable/ceglogo"
+        android:paddingTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="20dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
@@ -35,4 +36,4 @@
         android:layout_marginBottom="53dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
-</RelativeLayout><!-- From: file:/Users/karthick/AndroidStudioProjects/SYLAB-DOWNLOADER/app/src/main/res/layout/third.xml -->
+</RelativeLayout><!-- From: file:/Users/Harish/AndroidStudioProjects/SYLAB/app/src/main/res/layout/third.xml -->
