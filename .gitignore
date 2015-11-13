@@ -43,5 +43,9 @@ Temporary Items
 .apdisk
 
 #Android Studio files
-.idea/
+.idea/*
 local.properties
+.gradle/*
+*.iml
+build
+*.apk
